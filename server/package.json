@@ -4,16 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
-    "prettier-format": "prettier --config .prettierrc 'src/*' --write",
-    "lint": "eslint ./src",
+    "start": "tsc && node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "test": "jest --watchAll --no-cache"
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate",
+    "studio": "prisma studio",
+    "prettier-format": "prettier --config .prettierrc 'src/*' --write",
+    "lint": "eslint ./src"
+  },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^21.3.2"
+    "@hapi/hapi": "^21.3.2",
+    "@prisma/client": "^4.14.1"
   },
   "devDependencies": {
     "@types/hapi": "^18.0.8",
@@ -24,6 +30,7 @@
     "eslint-config-airbnb": "^19.0.4",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
+    "prisma": "^4.14.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4"
   }
