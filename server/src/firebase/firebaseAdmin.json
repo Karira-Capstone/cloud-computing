@@ -1,0 +1,14 @@
+{
+    "type": "service_account",
+    "project_id": "karira-project",
+    "private_key_id": "ac2faac053946deff5b98276fbc7e3d1db093f2e",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDOK794XKU3qti6\n99ydGYzGn92mUobveiKUe78aDrkXOYT5t6/luysFsPaM8It/7SjX4doJuvqfq7tU\na0JqHM+84otZxiRJ3BkFWe0whKLA08pzUFBWd2d107VmVCwOVeIktEIUjJ6qshnI\n00G3zauow9KZLSueA98OE2ChJX94XGhuWhVNEq5/99/mhc4MKeb77wc4P6f8kL0S\n86SkJTACYoGFUU2p/X/NukpYajpPX5d0D/1h7+k3yyzqNQTOo2RmRAduz2sfVyQK\nbxdc9NOcEnmCGwamfzLHS3F0TihXC2cgFbdHKwOC8Eqc9hnP/HGgkNeEnUepbrbk\nCB4MpJ8FAgMBAAECggEACfW3FDt1h9DrE20x7Sz0zgufC4/lEOCXlxC7VKjtbB/N\nOrsS9kgqdeXsozZjptRwKq2weNPdk6UaMaPU24d0ya0wCjA2RJMrakTD3popuqMA\nnr18hBDUoK6Pjtf2IOMpP5itsIxyhdCAymDaReTbrBV5sQirmMCbH/TzsBU9qTTH\nZHVQylD0MyTvlheUnmpRREpUDpJVff7hQcL6L7wVEFTAYiyR7LL+KKxeGN6Z9QjH\nZuEXC7G3d0qGIojRTW4W5Kor7Bhh7A4G62qG//IhpoTYwBejI4Lh5Xol557iXmor\nt+L56k52TH0fNX+Lm1+k+zAebu5jU2oRJA4OktkjwQKBgQDyIa8qkC4mnSgl08Zb\ngSgJjFydzRDpDlBYQfQ+zWsATuPmy/Arh3Xz+NSG+A4JpSuT8y6IHbXGzdvk+Nyr\nyLi42j43JmjiQLtQqxPZD7xRzfW8EPJh7m6YJIbO7+8htTHkoehdphwZY7Zvhzqi\nveo4lPmGfDGzLuxlO85bMawJWQKBgQDZ+sfs3rZmPZryl2yXF3b5hpGTOx7kbDMx\nf/U2uKA/MVOHkQjTwrfUocCBdQDqBf/nty2iKSiTNi+HkvyBRVwCKr5yycAgCnA+\nov/Ww4HMTf2/yrgmUv0+6Zjb8h01Gh/Yrx8iioyFS2wDTXbOpcfNwj5m8RD/OoSJ\nw3WLzEchjQKBgF+5/XzAX96YR2UdItDOcTvFKGCi0EqzhARAnwWtRN5sUiHPAvbS\nqUl5WNy7eSFLEb1+aSkbReCBRqxxzxyDULSUZAB9yP2aRfQQjtpEJFnbKYne0VTy\nZPr1he6OYWZcMouHj0xm/bjz+Q6C0iXBG7ae/z+yHhwPMxqa2GypaLCRAoGBAMki\n8AHxC8vRwr1g3nGY1E6xTnjVz86kzKQ7V1C0EiHdaR8pxERqY2iQDOsnxL0s5hKx\nYylD403bbQYjql26W4kgWfXflim6mBIkJADPDGEyAhhMfZnXcBjyQfuKMEtEnOg7\nx3X+9GU20CdH/n32WSTSvPQOM0nffFcGhduGlogtAoGBAOkscYm4lLCYJvrmREWq\n4KJmRDZmdJrFvysU/mBYLOOyf5af0DB6OmoLDT3Fr4Ul5laogl5ptBremD6NpAXJ\nuh93/g2Ayb1jTqpFXelAv6Fvl0fBTRmPgcHxPEw7JtAJVUaFPMmLbbeu//6eKdgK\n6uWv5ZoF5f9eXTS/8TJTmyO5\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-ws6p3@karira-project.iam.gserviceaccount.com",
+    "client_id": "102526052689444700622",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ws6p3%40karira-project.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }
+  

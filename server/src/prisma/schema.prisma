@@ -14,7 +14,7 @@ model User {
   id            String         @id @default(uuid())
   email         String         @unique
   full_name     String
-  role          USER_ROLE
+  role          USER_ROLE      @default(UNDEFINED)
   picture       String
   created_at    DateTime       @default(now())
   onboarded     Boolean        @default(false)
@@ -215,6 +215,7 @@ enum USER_ROLE {
   ADMIN
   WORKER
   CLIENT
+  UNDEFINED
 }
 
 enum ORDER_TYPE {
