@@ -5,5 +5,8 @@ export const hellowordHandler = async (
   request: Request<ReqRefDefaults>,
   h: ResponseToolkit<ReqRefDefaults>,
 ) => {
-  return `Hello, world`;
+  if (request.auth.isAuthenticated) {
+    return `Hello, ${(request.auth.credentials.user as any).name}`;
+  }
+  return `Hello, Anonymous`;
 };
