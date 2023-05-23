@@ -3,7 +3,7 @@ import jwt, { HapiJwt } from '@hapi/jwt';
 import { createToken, jwt_user_strategy } from './config/authentication';
 import { DEFAULT_IMAGE } from './constant/others';
 import { db } from './prisma';
-import { route } from './routes';
+import { clientRoute, orderRoute, projectRoute, route, serviceRoute, workerRoute } from './handler';
 const init = async function () {
   const server: Server = Hapi.server({
     port: process.env.PORT || 8000,
@@ -17,8 +17,13 @@ const init = async function () {
 
   await server.register(jwt);
   server.auth.strategy('jwt_user', 'jwt', jwt_user_strategy);
-
+  
   server.route(route);
+  server.route(clientRoute);
+  server.route(orderRoute);
+  server.route(projectRoute);
+  server.route(serviceRoute);
+  server.route(workerRoute);
 
   await server.start();
   console.log('Server running on %s', server.info.uri);

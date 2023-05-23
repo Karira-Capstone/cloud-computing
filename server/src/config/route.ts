@@ -1,5 +1,9 @@
 import { USER_ROLE } from "@prisma/client";
 
+export const unauthenticatedRouteConfig: any= {
+  auth: false,
+}
+
 export const workerRouteConfig = {
   auth: {
     strategy: 'jwt_user',

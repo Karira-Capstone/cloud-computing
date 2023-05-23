@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { ReqRefDefaults, ServerRoute } from '@hapi/hapi';
-import { hellowordHandler } from './handler/helloworld';
-import { authHandler } from './handler/authHandler';
-import { authenticatedRouteConfig } from './config/route';
+import { hellowordHandler } from './helloworld';
+import { authHandler } from './authHandler';
+import { authenticatedRouteConfig, unauthenticatedRouteConfig } from '../config/route';
 
 
 export const route: ServerRoute<ReqRefDefaults>[] = [
@@ -16,8 +16,6 @@ export const route: ServerRoute<ReqRefDefaults>[] = [
     method: 'POST',
     path: '/api/authenticate',
     handler: authHandler,
-    options:{
-      auth: false
-    }
+    options: unauthenticatedRouteConfig
   },
 ];
