@@ -79,6 +79,7 @@ model Project {
   id           Int            @id @default(autoincrement())
   created_at   DateTime       @default(now())
   last_updated DateTime       @updatedAt
+  title        String
   type         PROJECT_STATUS
   lower_bound  Int
   upper_bound  Int
