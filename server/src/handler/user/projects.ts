@@ -1,9 +1,9 @@
 import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
-import Boom from '@hapi/boom';
 import { Client, User } from '@prisma/client';
 import { db } from '../../prisma';
+import Boom from '@hapi/boom';
 
-export const finishOrderHandler = async (
+export const getYourOwnProjectsHandler = async (
   request: Request<ReqRefDefaults>,
   h: ResponseToolkit<ReqRefDefaults>,
 ) => {
@@ -11,36 +11,25 @@ export const finishOrderHandler = async (
     const user = request.pre.user as User & {
       client: Client;
     };
-    const orderId = Number(request.params.orderId);
-    await db.order.findFirstOrThrow({
+    const projects = await db.project.findMany({
       where: {
         client_id: user.client.id,
-        id: orderId,
-        status: 'PAID',
       },
-    });
-
-    const updatedOrder = await db.order.update({
-      where: {
-        id: orderId,
-      },
-      data: {
-        status: 'FINISHED',
-      },
-    });
-
-    await db.worker.update({
-      where: {
-        id: updatedOrder.worker_id,
-      },
-      data: {
-        num_of_order: {
-          increment: 1,
+      include: {
+        bids: {
+          include: {
+            worker: {
+              include: {
+                user: true,
+              },
+            },
+          },
         },
+        category: true,
+        order: true,
       },
     });
-
-    return updatedOrder;
+    return projects;
   } catch (error) {
     if (Boom.isBoom(error)) {
       throw error;

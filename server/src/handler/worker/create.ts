@@ -28,6 +28,9 @@ export const createWorkerHandler = async (
             id: user.id,
           },
         },
+        skills:{
+          connect: payload.skills || undefined
+        }
       },
     });
 

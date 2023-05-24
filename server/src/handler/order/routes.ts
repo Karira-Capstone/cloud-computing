@@ -5,6 +5,8 @@ import {
   cancelOrderHandler,
   createOrderFromBidHandler,
   createOrderFromServiceHandler,
+  createReviewByClientHandler,
+  createReviewByWorkerHandler,
   findOrderHandler,
   finishOrderHandler,
   rejectOrderHandler,
@@ -52,5 +54,17 @@ export const orderRoute: ServerRoute<ReqRefDefaults>[] = [
     path: '/api/orders/{orderId}/finish',
     handler: finishOrderHandler,
     options: clientRouteConfig,
+  },
+  {
+    method: 'POST',
+    path: '/api/orders/{orderId}/reviews/workers',
+    handler: createReviewByClientHandler,
+    options: clientRouteConfig,
+  },
+  {
+    method: 'POST',
+    path: '/api/orders/{orderId}/reviews/clients',
+    handler: createReviewByWorkerHandler,
+    options: workerRouteConfig,
   },
 ];

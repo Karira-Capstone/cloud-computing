@@ -4,6 +4,7 @@ import { createToken, jwt_user_strategy } from './config/authentication';
 import { DEFAULT_IMAGE } from './constant/others';
 import { db } from './prisma';
 import { clientRoute, orderRoute, projectRoute, route, serviceRoute, workerRoute } from './handler';
+import { userRoute } from './handler/user';
 const init = async function () {
   const server: Server = Hapi.server({
     port: process.env.PORT || 8000,
@@ -25,6 +26,7 @@ const init = async function () {
   server.route(projectRoute);
   server.route(serviceRoute);
   server.route(workerRoute);
+  server.route(userRoute)
 
   await server.start();
   console.log('Server running on %s', server.info.uri);

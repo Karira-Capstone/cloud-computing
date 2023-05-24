@@ -2,7 +2,7 @@
 import { ReqRefDefaults, ServerRoute } from '@hapi/hapi';
 import { hellowordHandler } from './helloworld';
 import { authHandler } from './authHandler';
-import { authenticatedRouteConfig, unauthenticatedRouteConfig } from '../config/route';
+import { unauthenticatedRouteConfig } from '../config/route';
 
 export const route: ServerRoute<ReqRefDefaults>[] = [
   {

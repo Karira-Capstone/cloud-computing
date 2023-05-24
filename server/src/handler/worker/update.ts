@@ -36,6 +36,9 @@ export const updateWorkerHandler = async (
         identity_number: payload.identity_number || undefined,
         phone: payload.phone || undefined,
         province: payload.province || undefined,
+        skills: {
+          connect: payload.skills || undefined,
+        },
       },
       include: {
         user: true,
