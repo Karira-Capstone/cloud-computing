@@ -12,22 +12,21 @@ export const updateServiceHandler = async (
       worker: Worker;
     };
     const serviceId = Number(request.params.serviceId);
-    const payload = request.payload as any;
-    const service = await db.service.findFirst({
+    await db.service.findFirstOrThrow({
       where: {
         id: serviceId,
         worker_id: user.worker.id,
       },
     });
-    if(!service) {
-      throw Boom.unauthorized("You don't have permission to update this service")
-    }
+
+    const payload = request.payload as any;
     const updatedService = await db.service.update({
       data: {
         title: payload.title || undefined,
         description: payload.description || undefined,
         images: payload.images || undefined, // JSON
         price: payload.price || undefined,
+        category_id: payload.category.id || undefined,
       },
       where: {
         id: serviceId,

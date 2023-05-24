@@ -15,7 +15,11 @@ export const findServiceHandler = async (
       include: {
         category: true,
         reviews: true,
-        worker: true,
+        worker: {
+          include: {
+            user: true,
+          },
+        },
       },
     });
     return service;
