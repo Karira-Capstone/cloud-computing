@@ -91,6 +91,7 @@ model Project {
   client       Client         @relation(fields: [client_id], references: [id])
   category     Category       @relation(fields: [category_id], references: [id])
   bids         Bid[]
+  order        Order[] //Kalau order batal, bisa tambah lagi
 }
 
 model Service {
@@ -137,8 +138,10 @@ model Order {
   service_id  Int
   client_id   Int
   worker_id   Int
-  bid         Bid          @relation(fields: [bid_id], references: [id])
-  service     Service      @relation(fields: [service_id], references: [id])
+  project_id  Int
+  bid         Bid?         @relation(fields: [bid_id], references: [id])
+  service     Service?     @relation(fields: [service_id], references: [id])
+  project     Project?     @relation(fields: [project_id], references: [id])
   client      Client       @relation(fields: [client_id], references: [id])
   worker      Worker       @relation(fields: [worker_id], references: [id])
   reviews     Review[]
