@@ -13,6 +13,7 @@ const init = async function () {
         origin: ['*'],
       },
     },
+    debug: { request: ['error'] }
   });
 
   await server.register(jwt);

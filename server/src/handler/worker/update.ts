@@ -1,9 +1,16 @@
 // update profile
 import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
+import Boom from '@hapi/boom'
 
 export const updateWorkerHandler = async (
   request: Request<ReqRefDefaults>,
   h: ResponseToolkit<ReqRefDefaults>,
 ) => {
-  return `Hello, world`;
-};
+  try {
+  } catch (error) {
+    if (Boom.isBoom(error)) {
+      throw error;
+    }
+    request.log('error', error); // unexpected error
+    throw Boom.badGateway('');
+  }};
