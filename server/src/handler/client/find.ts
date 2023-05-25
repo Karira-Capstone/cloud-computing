@@ -14,7 +14,13 @@ export const findClientHandler = async (
       },
       include: {
         user: true,
-        projects: true,
+        projects: {
+          where: {
+            type: {
+              in: ['APPROVED', 'INPROGRESS'],
+            },
+          },
+        },
         reviews: true,
       },
     });

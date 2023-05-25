@@ -12,7 +12,7 @@ export const createOrderFromBidHandler = async (
       client: Client;
     };
     const payload = request.payload as any;
-    const bid = await db.bid.findUnique({
+    const bid = await db.bid.findUniqueOrThrow({
       where: {
         id: Number(request.params.bidId),
       },

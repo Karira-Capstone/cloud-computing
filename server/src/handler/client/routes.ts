@@ -21,7 +21,7 @@ export const clientRoute: ServerRoute<ReqRefDefaults>[] = [
   },
   {
     method: 'GET',
-    path: '/api/clients/{id}',
+    path: '/api/clients/{clientId}',
     handler: findClientHandler,
     options: unauthenticatedRouteConfig,
   },

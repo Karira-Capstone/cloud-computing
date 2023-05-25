@@ -11,9 +11,10 @@ export const createOrderFromServiceHandler = async (
     const user = request.pre.user as User & {
       client: Client;
     };
-    const service = await db.service.findUnique({
+    const service = await db.service.findFirstOrThrow({
       where: {
         id: Number(request.params.serviceId),
+        type: 'APPROVED',
       },
     });
     const payload = request.payload as any;

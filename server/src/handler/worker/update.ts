@@ -30,18 +30,19 @@ export const updateWorkerHandler = async (
       },
       data: {
         address: payload.address || undefined,
-        birth_date: payload.birth_date || undefined,
+        birth_date: new Date(payload.birth_date) || undefined,
         city: payload.city || undefined,
         description: payload.description || undefined,
         identity_number: payload.identity_number || undefined,
         phone: payload.phone || undefined,
         province: payload.province || undefined,
         skills: {
-          connect: payload.skills || undefined,
+          set: payload.skills || undefined,
         },
       },
       include: {
         user: true,
+        skills: true
       },
     });
     return updatedWorker;

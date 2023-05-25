@@ -10,10 +10,12 @@
     "generate": "prisma generate",
     "studio": "prisma studio",
     "prettier-format": "prettier --config .prettierrc 'src/*' --write",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "reset": "prisma migrate reset"
   },
   "prisma": {
-    "schema": "src/prisma/schema.prisma"
+    "schema": "src/prisma/schema.prisma",
+    "seed": "ts-node-dev src/prisma/seed.ts"
   },
   "author": "",
   "license": "ISC",

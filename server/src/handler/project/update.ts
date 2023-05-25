@@ -21,17 +21,20 @@ export const updateProjectHandler = async (
     const payload = request.payload as any;
     const updatedProject = await db.project.update({
       data: {
-        attachment: payload.attachment || undefined,
-        category_id: payload.category.id || undefined,
-        description: payload.description || undefined,
-        duration: payload.duration || undefined,
-        lower_bound: payload.lower_bound || undefined,
-        upper_bound: payload.upper_bound || undefined,
-        title: payload.title || undefined,
+        attachment: payload?.attachment || undefined,
+        category_id: payload?.category?.id || undefined,
+        description: payload?.description || undefined,
+        duration: payload?.duration || undefined,
+        lower_bound: payload?.lower_bound || undefined,
+        upper_bound: payload?.upper_bound || undefined,
+        title: payload?.title || undefined,
       },
       where: {
         id: projectId,
       },
+      include:{
+        category: true,
+      }
     });
     return updatedProject;
   } catch (error) {
@@ -39,6 +42,6 @@ export const updateProjectHandler = async (
       throw error;
     }
     request.log('error', error); // unexpected error
-    throw Boom.badGateway('');
+    throw Boom.badRequest('');
   }
 };

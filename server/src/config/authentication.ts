@@ -51,7 +51,7 @@ export const createToken = (user: User): String => {
         algorithm: 'HS512',
       },
       {
-        ttlSec: 60 * 60 * 24 * 7, // 7 days
+        ttlSec: 60 * 60 * 24 * 7 * 4, // 28 days
       },
     );
   };

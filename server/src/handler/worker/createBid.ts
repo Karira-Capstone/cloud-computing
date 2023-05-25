@@ -13,6 +13,14 @@ export const createBidForProjectHandler = async (
     };
     const projectId = Number(request.params.projectId);
     const payload = request.payload as any;
+    await db.project.findFirstOrThrow({
+      where: {
+        id: projectId,
+        type: {
+          in: ['APPROVED', 'INPROGRESS'],
+        },
+      },
+    });
     const createdBid = await db.bid.create({
       data: {
         message: payload.message,
@@ -35,6 +43,6 @@ export const createBidForProjectHandler = async (
       throw error;
     }
     request.log('error', error); // unexpected error
-    throw Boom.badGateway('');
+    throw Boom.badRequest();
   }
 };

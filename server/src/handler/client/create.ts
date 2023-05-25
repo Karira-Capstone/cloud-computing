@@ -11,7 +11,7 @@ export const createClientHandler = async (
   try {
     const user = request.pre.user as User;
     const payload = request.payload as any;
-    if (user.role == 'UNDEFINED') {
+    if (user.role != 'UNDEFINED') {
       throw Boom.badRequest('You Have Chosen a Role!');
     }
     const client = await db.client.create({
@@ -42,6 +42,6 @@ export const createClientHandler = async (
       throw error;
     }
     request.log('error', error); // unexpected error
-    throw Boom.badGateway('');
+    throw Boom.badRequest('');
   }
 };

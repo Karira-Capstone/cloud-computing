@@ -15,7 +15,11 @@ export const findWorkerHandler = async (
       include: {
         user: true,
         reviews: true,
-        services: true,
+        services: {
+          where: {
+            type: 'APPROVED',
+          },
+        },
         skills: true,
       },
     });

@@ -11,13 +11,13 @@ export const createWorkerHandler = async (
   try {
     const user = request.pre.user as User;
     const payload = request.payload as any;
-    if (user.role == 'UNDEFINED') {
+    if (user.role != 'UNDEFINED') {
       throw Boom.badRequest('You Have Chosen a Role!');
     }
     const worker = await db.worker.create({
       data: {
         address: payload.address,
-        birth_date: payload.birth_date,
+        birth_date: new Date(payload.birth_date),
         city: payload.city,
         description: payload.description,
         identity_number: payload.identity_number,
@@ -28,10 +28,14 @@ export const createWorkerHandler = async (
             id: user.id,
           },
         },
-        skills:{
-          connect: payload.skills || undefined
-        }
+        skills: {
+          connect: payload.skills || undefined,
+        },
       },
+      include:{
+        skills: true,
+        user: true
+      }
     });
 
     await db.user.update({

@@ -14,19 +14,19 @@ const init = async function () {
         origin: ['*'],
       },
     },
-    debug: { request: ['error'] }
+    debug: { request: ['error'] },
   });
 
   await server.register(jwt);
   server.auth.strategy('jwt_user', 'jwt', jwt_user_strategy);
-  
+
   server.route(route);
   server.route(clientRoute);
   server.route(orderRoute);
   server.route(projectRoute);
   server.route(serviceRoute);
   server.route(workerRoute);
-  server.route(userRoute)
+  server.route(userRoute);
 
   await server.start();
   console.log('Server running on %s', server.info.uri);
@@ -34,23 +34,11 @@ const init = async function () {
 
 const initDev = async () => {
   await init();
-
-  let user = await db.user.findUnique({
-    where: {
-      email: 'zidan.kharisma@ui.ac.id',
-    },
-  });
-  if (!user) {
-    user = await db.user.create({
-      data: {
-        email: 'zidan.kharisma@ui.ac.id',
-        full_name: 'Zidan Kharisma',
-        last_login: new Date(),
-        picture: DEFAULT_IMAGE,
-      },
-    });
-  }
-  // console.log(createToken(user));
+  // let users = await db.user.findMany();
+  // for (let user of users) {
+  //   console.log("Below is jwt token of "+user.full_name +" and id "+user.id)
+  //   console.log(createToken(user));
+  // }
 };
 
 initDev();
