@@ -19,9 +19,9 @@ export const createOrderFromBidHandler = async (
     });
     const order = await db.order.create({
       data: {
-        attachment: payload.attachment,
+        attachment: payload?.attachment || undefined,
         description: payload.description,
-        price: payload.price,
+        price: bid.price,
         status: 'CREATED',
         type: 'BID',
         worker: {
@@ -52,6 +52,6 @@ export const createOrderFromBidHandler = async (
       throw error;
     }
     request.log('error', error); // unexpected error
-    throw Boom.badGateway('');
+    throw Boom.badRequest('');
   }
 };

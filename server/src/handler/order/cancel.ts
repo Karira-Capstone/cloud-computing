@@ -20,7 +20,9 @@ export const cancelOrderHandler = async (
           in: ['CREATED', 'ACCEPTED'],
         },
       },
-    });
+    }).catch(()=>{
+      throw Boom.notFound()
+    })
     const updatedOrder = await db.order.update({
       where: {
         id: orderId,
@@ -35,6 +37,6 @@ export const cancelOrderHandler = async (
       throw error;
     }
     request.log('error', error); // unexpected error
-    throw Boom.badGateway('');
+    throw Boom.badRequest('');
   }
 };

@@ -13,19 +13,21 @@ export const createReviewByClientHandler = async (
     };
     const orderId = Number(request.params.orderId);
     const payload = request.payload as any;
-    const order = await db.order.findUniqueOrThrow({
-      where: {
-        id: orderId,
-      },
-      include: {
-        client: true,
-        worker: true,
-        service: true,
-      },
-    });
-    if (order.client.id != user.client.id) {
-      throw Boom.unauthorized('You are not allowed to make this review');
-    }
+    const order = await db.order
+      .findFirstOrThrow({
+        where: {
+          id: orderId,
+          client_id: user.client.id,
+        },
+        include: {
+          client: true,
+          worker: true,
+          service: true,
+        },
+      })
+      .catch(() => {
+        throw Boom.unauthorized();
+      });
     const isService = order.type == 'SERVICE';
     const review = await db.review.create({
       data: {
@@ -65,7 +67,7 @@ export const createReviewByClientHandler = async (
       throw error;
     }
     request.log('error', error); // unexpected error
-    throw Boom.badGateway('');
+    throw Boom.badRequest('');
   }
 };
 

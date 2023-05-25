@@ -21,7 +21,7 @@ export const orderRoute: ServerRoute<ReqRefDefaults>[] = [
   },
   {
     method: 'POST',
-    path: '/api/orders/projects/{bidId}',
+    path: '/api/orders/projects/bids/{bidId}',
     handler: createOrderFromBidHandler,
     options: clientRouteConfig,
   },
@@ -47,7 +47,7 @@ export const orderRoute: ServerRoute<ReqRefDefaults>[] = [
     method: 'PUT',
     path: '/api/orders/{orderId}/cancel',
     handler: cancelOrderHandler,
-    options: authenticatedRouteConfig,
+    options: clientRouteConfig,
   },
   {
     method: 'PUT',

@@ -18,7 +18,9 @@ export const finishOrderHandler = async (
         id: orderId,
         status: 'PAID',
       },
-    });
+    }).catch(()=>{
+      throw Boom.notFound()
+    })
 
     const updatedOrder = await db.order.update({
       where: {

@@ -11,18 +11,23 @@ export const createOrderFromServiceHandler = async (
     const user = request.pre.user as User & {
       client: Client;
     };
-    const service = await db.service.findFirstOrThrow({
-      where: {
-        id: Number(request.params.serviceId),
-        type: 'APPROVED',
-      },
-    });
+    const serviceId = Number(request.params.serviceId);
+    const service = await db.service
+      .findFirstOrThrow({
+        where: {
+          id: serviceId,
+          type: 'APPROVED',
+        },
+      })
+      .catch(() => {
+        throw Boom.notFound(`No approved service with id ${serviceId}`);
+      });
     const payload = request.payload as any;
     const order = await db.order.create({
       data: {
-        attachment: payload.attachment,
+        attachment: payload?.attachment || undefined,
         description: payload.description,
-        price: payload.price,
+        price: service.price,
         status: 'CREATED',
         type: 'SERVICE',
         service: {

@@ -18,7 +18,9 @@ export const acceptOrderHandler = async (
         id: orderId,
         status: 'CREATED',
       },
-    });
+    }).catch(()=>{
+      throw Boom.unauthorized("")
+    })
 
     const updatedOrder = await db.order.update({
       where: {
@@ -35,6 +37,6 @@ export const acceptOrderHandler = async (
       throw error;
     }
     request.log('error', error); // unexpected error
-    throw Boom.badGateway('');
+    throw Boom.badRequest('');
   }
 };

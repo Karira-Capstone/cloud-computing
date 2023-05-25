@@ -18,7 +18,9 @@ export const rejectOrderHandler = async (
         id: orderId,
         status: 'CREATED',
       },
-    });
+    }).catch(()=>{
+      throw Boom.unauthorized()
+    })
 
     const updatedOrder = await db.order.update({
       where: {

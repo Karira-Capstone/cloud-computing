@@ -11,29 +11,33 @@ export const findOrderHandler = async (
     const user = request.pre.user as User;
 
     const orderId = Number(request.params.orderId);
-    const order = await db.order.findFirstOrThrow({
-      where: {
-        id: orderId,
-        OR: [
-          {
-            worker: {
-              user_id: user.id,
+    const order = await db.order
+      .findFirstOrThrow({
+        where: {
+          id: orderId,
+          OR: [
+            {
+              worker: {
+                user_id: user.id,
+              },
             },
-          },
-          {
-            client: {
-              user_id: user.id,
+            {
+              client: {
+                user_id: user.id,
+              },
             },
-          },
-        ],
-      },
-    });
+          ],
+        },
+      })
+      .catch(() => {
+        throw Boom.unauthorized()
+      });
     return order;
   } catch (error) {
     if (Boom.isBoom(error)) {
       throw error;
     }
     request.log('error', error); // unexpected error
-    throw Boom.badGateway('');
+    throw Boom.badRequest('');
   }
 };
