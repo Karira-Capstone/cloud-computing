@@ -57,7 +57,14 @@ export const seedUser = async () => {
       onboarded: true,
       client: {
         create: {
-          phone: '628567681246',
+          address: 'address1',
+          birth_date: new Date(),
+          city: 'city1',
+          description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+          identity_number: '111111111111',
+          phone: '628567681245',
+          province: 'province1',
         },
       },
     },

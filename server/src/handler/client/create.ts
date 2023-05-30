@@ -15,18 +15,24 @@ export const createClientHandler = async (
       throw Boom.badRequest('You Have Chosen a Role!');
     }
     const client = await db.client.create({
-      data:{
+      data: {
+        address: payload.address,
+        birth_date: new Date(payload.birth_date),
+        city: payload.city,
+        description: payload.description,
+        identity_number: payload.identity_number,
         phone: payload.phone,
-        user:{
+        province: payload.province,
+        user: {
           connect: {
-            id: user.id
-          }
+            id: user.id,
+          },
         },
       },
-      include:{
-        user: true
-      }
-    })
+      include: {
+        user: true,
+      },
+    });
     await db.user.update({
       where: {
         id: user.id,

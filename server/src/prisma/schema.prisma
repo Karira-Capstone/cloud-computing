@@ -64,15 +64,21 @@ model Worker {
 }
 
 model Client {
-  id             Int       @id @default(autoincrement())
-  phone          String
-  avg_rating     Int       @default(0)
-  num_of_reviews Int       @default(0)
-  user_id        String    @unique
-  user           User      @relation(fields: [user_id], references: [id])
-  projects       Project[]
-  orders         Order[]
-  reviews        Review[]
+  id              Int       @id @default(autoincrement())
+  phone           String
+  identity_number String
+  birth_date      DateTime
+  province        String
+  city            String
+  address         String    @db.Text
+  description     String    @db.Text
+  avg_rating      Int       @default(0)
+  num_of_reviews  Int       @default(0)
+  user_id         String    @unique
+  user            User      @relation(fields: [user_id], references: [id])
+  projects        Project[]
+  orders          Order[]
+  reviews         Review[]
 }
 
 model Project {
@@ -134,7 +140,7 @@ model Order {
   attachment  String?
   status      ORDER_STATUS
   created_at  DateTime     @default(now())
-  bid_id      Int?          @unique
+  bid_id      Int?         @unique
   service_id  Int?
   client_id   Int
   worker_id   Int
