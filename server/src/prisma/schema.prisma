@@ -98,6 +98,7 @@ model Project {
   category     Category       @relation(fields: [category_id], references: [id])
   bids         Bid[]
   order        Order[] //Kalau order batal, bisa tambah lagi
+  skills       Skill[]
 }
 
 model Service {
@@ -117,6 +118,7 @@ model Service {
   category       Category       @relation(fields: [category_id], references: [id])
   orders         Order[]
   reviews        Review[]
+  skills         Skill[]
 }
 
 model Bid {
@@ -159,12 +161,17 @@ model Category {
   title    String
   services Service[]
   projects Project[]
+  skills   Skill[]
 }
 
 model Skill {
-  id      Int      @id @default(autoincrement())
-  title   String
-  workers Worker[]
+  id         Int       @id @default(autoincrement())
+  title      String
+  workers    Worker[]
+  category_id Int
+  category   Category? @relation(fields: [category_id], references: [id])
+  projects   Project[]
+  services   Service[]
 }
 
 model Review {
