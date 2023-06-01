@@ -1,40 +1,40 @@
+import { resolve } from 'path';
 import { db } from '..';
+import fs from 'fs';
+import events from 'events';
+import readline from 'readline';
+
+const createSkillNCategory = async (fileName: string): Promise<void> => {
+  try {
+    const rl = readline.createInterface({
+      input: fs.createReadStream(`${__dirname}/skills/${fileName}`),
+      crlfDelay: Infinity,
+    });
+    let skills = [];
+    rl.on('line', (line) => {
+      skills = [...skills, line];
+    });
+    await events.once(rl, 'close');
+    console.log(`Adding ${skills.length} skills from ${fileName}`);
+    await db.category.create({
+      data: {
+        title: fileName.charAt(0).toUpperCase() + fileName.replace('.txt', '').slice(1),
+        skills: {
+          createMany: {
+            data: skills.map((skill) => {
+              return {
+                title: skill,
+              };
+            }),
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const seedSkillNCategory = async () => {
-  await db.category.createMany({
-    data: [
-      {
-        title: 'kategori 1',
-      },
-      {
-        title: 'kategori 2',
-      },
-      {
-        title: 'kategori 3',
-      },
-      {
-        title: 'kategori 4',
-      },
-    ],
-  });
-  await db.skill.createMany({
-    data: [
-      {
-        title: 'skill 1',
-        category_id: 1,
-      },
-      {
-        title: 'skill 2',
-        category_id: 2,
-      },
-      {
-        title: 'skill 3',
-        category_id: 3,
-      },
-      {
-        title: 'skill 4',
-        category_id: 4,
-      },
-    ],
-  });
+  await Promise.all(fs.readdirSync(`${__dirname}/skills`).map((fileName) => createSkillNCategory(fileName)));
 };
