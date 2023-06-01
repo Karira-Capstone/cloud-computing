@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "karira-project",
+  "private_key_id": "8da92e002a6a412361f491a7043bbd28a2ecb64d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDfiaXnKBNfFGB7\nMFBETOn65wSIDHwln8pOrOTF5v1lzuSBlF68Y3ymNcXtEf/hRmIgfhcPLgxmRAad\nZxB8gnZbAYCIhsdBBiVB3/4OujLSxmfBQrrKCQo94HFpX+otQKkvGuh2oNIR6ylF\nQOVR2GbPy6QC/N4SnNjPQtg20dabkBIN/cKT08tI7Kvv14P8LM+GUiLnoJrXioOe\nrAjNU+mlfT9RFl+4WTh/Ys8jShoBXM3BB9pzl+eXFsw2gxxQWRa547WoKP0pB0j3\nJu2kZd2fJb0dMpD8qY0T2zzb5cb4QwG5OiqvGSSDZcaxeBiV0QdXZIsqxgDs6kIs\nVh6tBCTTAgMBAAECggEACaKcZg+/3yYmjw1ZyFx07NkcVuRVKQIB7YPwAsRVQYXe\n4eOMLBxVr/oWh/JNPhaTa6TV/sHLXnUXm+ZohF6KFlKyiZ2xCZFVY4AWKnqhSi9i\nkO/803EfvVFUv9W7Zyvw6BRO1x4snZP3VN21zeIu4N/GgSubaATVlLctLF+9ZKer\nnLEEBb8B7wwBQ1DYWl59PReS65Ugzwxv2Mc9Exfyd3Bm0K65GhfyUkK5BzdOgN9D\n2CxVGN22nCzxSW82SwyQmi0OTuox59IqPQjKC1qerf5FDjJ9uD8P/9wPnGc7SGup\numkAg5dlZz0Qunz5p9tmXhtdHkNja02H9pMuTxlAcQKBgQD4Fda0YnbUcgwmn3qx\n1gbLiwk3r8y9hxpCPq7n5FxQtgUBNu58FxFQ/gXgh1fVWq3GzQyxD1i7rT8DID72\nvU7fqDf1reJi//Vohv2atA0GEM1fgV2ubX+MjFJW0yRlcAQ6lTRwVInMKMIvC4y6\nPjMrKDS5DvTqvZiP2cqVy3/vRwKBgQDmq1L7dInqt3mR1G5NcWtq1sfD9rQPEFGy\n2wkasQzX4ldWAaAnZQLwztESrt6QPcMUrN0xQgVf/laulzEj8gOKYEKOZV+rZ0iH\n1B4DxbGMBgnKShP3hGZIm8b8NT18mHjKKdwWKrf1SIYGqgmL1njqupdHsd7CxiKP\nl0ONBjhcFQKBgAP5hZkaQsEgmqU7xOF4hl9YeOtVe7hFo9wP2QmKFRiN8gKU+Lkw\nPWzIxRtVz8hxTXtz6ZIkps1K90l7iMa3Pb5DmbHr+UaQx0PHdeS2ocbJGiE/l1qm\nEncUAHW3qEufwdGWdmKeWB7XQFU0oCqTuIomeMHGRZJFO16CpMZFnmUdAoGAQfVz\ngRvN5CQayyxnbhWklaRc8xg0XKpZ8j7X154RAhpixuEoHpuvv5QkDKecVLqUcfEM\nPu2WA+ECgGITVyf5AzSLU5SBSs352304J/P71QJVAlc0Zm6hoNmKiMvgjSQ8RfK6\nUExe1fCrAnTUzfvCD7zTTVj7Tc7CSzUBx+2jaBECgYB0bn2/RNsH/ZNERopK4gf3\nMmdjCWbxgYoniD5h2L9ScSb907EjKULu5cV/JBN2GVJ5n496IesFfQg16Qxs9Bzk\nG6I02UjQr3HX2uNaWVIvCnArvzDjjLeMy8G0byV/5/bOcb1D+DegB8jomrcrSu83\nsRIAG0FxswsRtd1cnAKPGg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "cloud-storage-uploader@karira-project.iam.gserviceaccount.com",
+  "client_id": "107616244356536715722",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cloud-storage-uploader%40karira-project.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
