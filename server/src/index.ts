@@ -1,10 +1,8 @@
 import Hapi, { Server } from '@hapi/hapi';
 import jwt, { HapiJwt } from '@hapi/jwt';
-import { createToken, jwt_user_strategy } from './config/authentication';
-import { DEFAULT_IMAGE } from './constant/others';
-import { db } from './prisma';
-import { clientRoute, orderRoute, projectRoute, route, serviceRoute, uploadRoute, workerRoute } from './handler';
-import { userRoute } from './handler/user';
+import { createToken, jwt_user_strategy } from './api/config/authentication';
+import { clientRoute, orderRoute, projectRoute, route, serviceRoute, uploadRoute, workerRoute } from './api/handler';
+import { userRoute } from './api/handler/user';
 const init = async function () {
   const server: Server = Hapi.server({
     port: process.env.PORT || 8000,
