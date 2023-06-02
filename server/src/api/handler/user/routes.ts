@@ -7,6 +7,7 @@ import {
   getYourOwnProjectsHandler,
   getGivenReviewsHandler,
 } from '.';
+import { updateDeviceToken } from './device-token';
 
 export const userRoute: ServerRoute<ReqRefDefaults>[] = [
   {
@@ -37,6 +38,12 @@ export const userRoute: ServerRoute<ReqRefDefaults>[] = [
     method: 'GET',
     path: '/api/users/reviews',
     handler: getGivenReviewsHandler,
+    options: authenticatedRouteConfig,
+  },
+  {
+    method: 'POST',
+    path: '/api/users/device-token',
+    handler: updateDeviceToken,
     options: authenticatedRouteConfig,
   },
 ];

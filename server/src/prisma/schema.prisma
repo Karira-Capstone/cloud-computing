@@ -20,6 +20,7 @@ model User {
   onboarded     Boolean        @default(false)
   is_active     Boolean        @default(true)
   last_login    DateTime
+  device_token  String?         @db.Text
   admin         Admin?
   worker        Worker?
   client        Client?
@@ -165,13 +166,13 @@ model Category {
 }
 
 model Skill {
-  id         Int       @id @default(autoincrement())
-  title      String
-  workers    Worker[]
+  id          Int       @id @default(autoincrement())
+  title       String
+  workers     Worker[]
   category_id Int
-  category   Category? @relation(fields: [category_id], references: [id])
-  projects   Project[]
-  services   Service[]
+  category    Category? @relation(fields: [category_id], references: [id])
+  projects    Project[]
+  services    Service[]
 }
 
 model Review {
