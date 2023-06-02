@@ -10,6 +10,10 @@ services:
       - "3307:3306"
     expose:
       - 3307
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=karira
+      - MYSQL_PASSWORD=capstone-bangkit-karira
     env_file:
       - docker.env
     networks:
@@ -26,6 +30,7 @@ services:
       - docker.env
     environment:
       - PMA_HOST=db
+      - MYSQL_ROOT_PASSWORD=password
     networks:
       - mysql-phpmyadmin
 

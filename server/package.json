@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/index.js",
+    "start": "NODE_ENV=production npm run generate && tsc && node dist/index.js",
     "dev": "nodemon src/index.ts",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate",
     "studio": "prisma studio",
     "prettier-format": "prettier --config .prettierrc 'src/*' --write",
     "lint": "eslint ./src",
-    "reset": "prisma migrate reset"
+    "reset": "prisma migrate reset --force"
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma",

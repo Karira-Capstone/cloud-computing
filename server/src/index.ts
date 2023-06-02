@@ -1,6 +1,6 @@
 import Hapi, { Server } from '@hapi/hapi';
 import jwt, { HapiJwt } from '@hapi/jwt';
-import { createToken, jwt_user_strategy } from './api/config/authentication';
+import { jwt_user_strategy } from './api/config/authentication';
 import { clientRoute, orderRoute, projectRoute, route, serviceRoute, uploadRoute, workerRoute } from './api/handler';
 import { userRoute } from './api/handler/user';
 const init = async function () {
@@ -33,11 +33,6 @@ const init = async function () {
 
 const initDev = async () => {
   await init();
-  // let users = await db.user.findMany();
-  // for (let user of users) {
-  //   console.log("Below is jwt token of "+user.full_name +" and id "+user.id)
-  //   console.log(createToken(user));
-  // }
 };
 
 initDev();
