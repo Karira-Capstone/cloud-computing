@@ -15,10 +15,7 @@ const uploadFile = (file: any, user: User) => {
     });
     file.on('end', (err) => {
       console.log('Resolved file : ' + fileName);
-      resolve({
-        fileName,
-        url: `https://storage.googleapis.com/karira/${newFilePath}`,
-      });
+      resolve(`https://storage.googleapis.com/karira/${newFilePath}`);
     });
   });
 };
