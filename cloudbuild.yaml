@@ -1,11 +1,11 @@
 steps:
   # build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server:1.01', '.']
+    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server:1.02', '.']
     # push the container image
   - name: 'gcr.io/cloud-builders/docker'
     # args: ['push', 'gcr.io/$PROJECT_ID/docker-repo']
-    args: ['push', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server:1.01']
+    args: ['push', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server:1.02']
     # deploy to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
@@ -14,7 +14,7 @@ steps:
         'deploy',
         'karira-server',
         '--image',
-        'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server:1.01',
+        'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server:1.02',
         '--region',
         'asia-southeast2',
         '--platform',
