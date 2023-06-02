@@ -1,7 +1,8 @@
 import Hapi, { Server } from '@hapi/hapi';
 import jwt, { HapiJwt } from '@hapi/jwt';
 import { User } from '@prisma/client';
-
+import dotenv from 'dotenv'
+dotenv.config()
 export const jwt_user_strategy = {
   keys: {
     key: process.env.JWT_SECRET_KEY,
