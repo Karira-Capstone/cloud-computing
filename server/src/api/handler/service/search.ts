@@ -7,7 +7,7 @@ export const searchServiceHandler = async (
   h: ResponseToolkit<ReqRefDefaults>,
 ) => {
   try {
-    const title = request.params.title;
+    const title = request.query.q;
     const services = await db.service.findMany({
       where:{
         title:{

@@ -6,8 +6,9 @@ import {
   getYourOwnProfileHandler,
   getYourOwnProjectsHandler,
   getGivenReviewsHandler,
+  updateDeviceToken,
+  getNotifications,
 } from '.';
-import { updateDeviceToken } from './device-token';
 
 export const userRoute: ServerRoute<ReqRefDefaults>[] = [
   {
@@ -44,6 +45,12 @@ export const userRoute: ServerRoute<ReqRefDefaults>[] = [
     method: 'POST',
     path: '/api/users/device-token',
     handler: updateDeviceToken,
+    options: authenticatedRouteConfig,
+  },
+  {
+    method: 'GET',
+    path: '/api/users/notifications',
+    handler: getNotifications,
     options: authenticatedRouteConfig,
   },
 ];
