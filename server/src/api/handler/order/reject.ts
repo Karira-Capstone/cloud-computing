@@ -2,6 +2,7 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { User, Worker } from '@prisma/client';
 import { db } from '../../../prisma';
+import { notificationOnOrderRejected } from '../../../google/messaging/notification';
 
 export const rejectOrderHandler = async (
   request: Request<ReqRefDefaults>,
@@ -12,15 +13,17 @@ export const rejectOrderHandler = async (
       worker: Worker;
     };
     const orderId = Number(request.params.orderId);
-    await db.order.findFirstOrThrow({
-      where: {
-        worker_id: user.worker.id,
-        id: orderId,
-        status: 'CREATED',
-      },
-    }).catch(()=>{
-      throw Boom.unauthorized()
-    })
+    await db.order
+      .findFirstOrThrow({
+        where: {
+          worker_id: user.worker.id,
+          id: orderId,
+          status: 'CREATED',
+        },
+      })
+      .catch(() => {
+        throw Boom.unauthorized();
+      });
 
     const updatedOrder = await db.order.update({
       where: {
@@ -30,6 +33,8 @@ export const rejectOrderHandler = async (
         status: 'CANCELLED',
       },
     });
+
+    // await notificationOnOrderRejected(orderId);
 
     return updatedOrder;
   } catch (error) {

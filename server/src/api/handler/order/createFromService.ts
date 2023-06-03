@@ -2,6 +2,7 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { Client, User } from '@prisma/client';
 import { db } from '../../../prisma';
+import { notificationOnOrderFromService } from '../../../google/messaging/notification';
 
 export const createOrderFromServiceHandler = async (
   request: Request<ReqRefDefaults>,
@@ -47,6 +48,7 @@ export const createOrderFromServiceHandler = async (
         },
       },
     });
+    // await notificationOnOrderFromService(order.id)
     return order;
   } catch (error) {
     if (Boom.isBoom(error)) {
