@@ -24,11 +24,6 @@ export const createServiceHandler = async (
             id: user.worker.id,
           },
         },
-        category: {
-          connect: {
-            id: payload.category.id,
-          },
-        },
       },
     });
     return service;

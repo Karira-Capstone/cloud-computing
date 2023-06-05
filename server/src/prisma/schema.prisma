@@ -95,9 +95,9 @@ model Project {
   description  String         @db.Text
   attachment   String?
   client_id    Int
-  category_id  Int
+  category_id  Int?
   client       Client         @relation(fields: [client_id], references: [id])
-  category     Category       @relation(fields: [category_id], references: [id])
+  category     Category?      @relation(fields: [category_id], references: [id])
   bids         Bid[]
   order        Order[] //Kalau order batal, bisa tambah lagi
   skills       Skill[]
@@ -115,9 +115,9 @@ model Service {
   avg_rating     Int            @default(0)
   num_of_reviews Int            @default(0)
   worker_id      Int
-  category_id    Int
+  category_id    Int?
   worker         Worker         @relation(fields: [worker_id], references: [id])
-  category       Category       @relation(fields: [category_id], references: [id])
+  category       Category?      @relation(fields: [category_id], references: [id])
   orders         Order[]
   reviews        Review[]
   skills         Skill[]
