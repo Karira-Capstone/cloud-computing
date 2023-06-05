@@ -1,21 +1,24 @@
 import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
-import Boom from '@hapi/boom';
+import { User } from '@prisma/client';
 import { db } from '../../../prisma';
+import Boom from '@hapi/boom';
 
-export const searchProjectHandler = async (
+export const getNotifications = async (
   request: Request<ReqRefDefaults>,
   h: ResponseToolkit<ReqRefDefaults>,
 ) => {
   try {
-    const title = request.query.q;
-    const projects = await db.project.findMany({
+    const user = request.pre.user as User;
+    const limit = Number(request.query.limit || 10);
+    return await db.notification.findMany({
       where: {
-        title: {
-          contains: title,
-        },
+        user_id: user.id,
       },
+      orderBy: {
+        created_at: 'desc',
+      },
+      take: limit,
     });
-    return projects;
   } catch (error) {
     if (Boom.isBoom(error)) {
       throw error;

@@ -2,6 +2,7 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { User, Worker } from '@prisma/client';
 import { db } from '../../../prisma';
+import { notificationOnBid } from '../../../google/messaging/notification/onBid';
 
 export const createBidForProjectHandler = async (
   request: Request<ReqRefDefaults>,
@@ -37,6 +38,7 @@ export const createBidForProjectHandler = async (
         },
       },
     });
+    // await notificationOnBid(createdBid.project_id);
     return createdBid;
   } catch (error) {
     if (Boom.isBoom(error)) {
