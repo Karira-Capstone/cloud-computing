@@ -14,6 +14,13 @@ export const searchProjectHandler = async (
           contains: title,
         },
       },
+      include: {
+        client: {
+          include: {
+            user: true,
+          },
+        },
+      },
     });
     return projects;
   } catch (error) {

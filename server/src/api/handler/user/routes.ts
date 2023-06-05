@@ -8,6 +8,7 @@ import {
   getGivenReviewsHandler,
   updateDeviceToken,
   getNotifications,
+  deleteNotification,
 } from '.';
 
 export const userRoute: ServerRoute<ReqRefDefaults>[] = [
@@ -53,4 +54,10 @@ export const userRoute: ServerRoute<ReqRefDefaults>[] = [
     handler: getNotifications,
     options: authenticatedRouteConfig,
   },
+  {
+    method:"DELETE",
+    path:'/api/users/notifications/{notificationId}',
+    handler: deleteNotification,
+    options: authenticatedRouteConfig
+  }
 ];
