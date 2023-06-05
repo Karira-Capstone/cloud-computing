@@ -21,7 +21,7 @@ model User {
   onboarded     Boolean        @default(false)
   is_active     Boolean        @default(true)
   last_login    DateTime
-  device_token  String?         @db.Text
+  device_token  String?        @db.Text
   admin         Admin?
   worker        Worker?
   client        Client?
@@ -137,25 +137,26 @@ model Bid {
 }
 
 model Order {
-  id          Int          @id @default(autoincrement())
-  type        ORDER_TYPE
-  price       Int
-  description String       @db.Text
-  attachment  String?
-  status      ORDER_STATUS
-  created_at  DateTime     @default(now())
-  bid_id      Int?         @unique
-  service_id  Int?
-  client_id   Int
-  worker_id   Int
-  project_id  Int?
-  bid         Bid?         @relation(fields: [bid_id], references: [id])
-  service     Service?     @relation(fields: [service_id], references: [id])
-  project     Project?     @relation(fields: [project_id], references: [id])
-  client      Client       @relation(fields: [client_id], references: [id])
-  worker      Worker       @relation(fields: [worker_id], references: [id])
-  reviews     Review[]
-  payment     Payment?
+  id               Int          @id @default(autoincrement())
+  type             ORDER_TYPE
+  price            Int
+  description      String       @db.Text
+  attachment       String?
+  status           ORDER_STATUS
+  created_at       DateTime     @default(now())
+  proof_of_payment String?
+  bid_id           Int?         @unique
+  service_id       Int?
+  client_id        Int
+  worker_id        Int
+  project_id       Int?
+  bid              Bid?         @relation(fields: [bid_id], references: [id])
+  service          Service?     @relation(fields: [service_id], references: [id])
+  project          Project?     @relation(fields: [project_id], references: [id])
+  client           Client       @relation(fields: [client_id], references: [id])
+  worker           Worker       @relation(fields: [worker_id], references: [id])
+  reviews          Review[]
+  payment          Payment?
 }
 
 model Category {
