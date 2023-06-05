@@ -1,0 +1,144 @@
+Debian
+ActionScript
+MVC
+Apache Cordova
+Swift
+Hibernate
+Entity Framework
+Bash/Shell
+Bala balin
+AutoIt
+Watir
+Ajax
+Scriptaculous
+QCodo/QCubed
+Xamarin
+CVAVR
+BASCOM
+PIC
+Atmel
+Microsoft Visual Basic NET
+DirectX/DirectShow
+Andromo
+LibreOffice
+Netop Remote Control
+Linux
+SQL Server
+Oracle
+CakePHP
+.NET Micro Framework
+.NET Compact Framework
+ASP.NET
+Atmel AVR
+AVR Studio
+BlackBerry
+Firewall
+AWS Cloud
+S3
+Delphi XE/XE2
+Java Swing
+Amazon Service Cloud
+Xcode
+Java Spring MVC
+.NET Framework
+phpBB
+Apache
+Delphi
+Penetration Testing
+VisualBasic
+.NET/Mono
+AngularJS
+SSH MS SQL
+VB.Net
+CPanel
+Joomla
+Smarty Templates
+PrestaShop
+Prestashop
+OpenCart
+Appcelerator Titanium
+Magento
+Zend Framework
+Yii
+Drupal
+Symfony
+Typo3
+Zen Cart
+Drupal Templates
+Integration
+OpenWRT
+Tiki Wiki
+iMacros
+CryENGINE
+Unreal Engine
+Anim8or 
+Solidworks 
+Remote Desktop Assistency 
+Software Installation 
+Global Positioning System 
+V-Ray 
+Audacity
+Adobe PageMaker 
+MIDI 
+Raster Graphics 
+OpenGL
+ActiveDirectory 
+Flash/ActionScript
+FruityLoops 
+Visual Studio 
+Mozilla
+Share Point Portal 
+vBulletin
+Linux Administration
+Appery 
+STAAD Pro 
+Atom
+Blue Tick Instagram 
+Blue Tick Facebook 
+Blue Tick Whatapp 
+GCC 
+Sybase PowerBuilder 
+MVVM 
+Quicken 
+Blue Tick Twitter 
+Vectr 
+ConnectWise Control 
+RemotePC 
+Odoo 
+ERP 
+Google App Engine
+Appraisement 
+Bridge Engineering Structure
+Electronic 
+iPhone/iOS
+Google Cloud Developer 
+Google Cloud Engine 
+Google Cloud Platform 
+Google Web Toolkit (GWT) 
+Networking
+Dev Manager 
+Keynote 
+TeamViewer 
+Virtual Box
+Handbrake 
+Genymotion 
+Xnconvert 
+Adlibs
+Photo Pos Pro
+Mikrotik
+Arduino
+Electonic
+Microcontroller
+Robotics
+RFID
+Ruby on Rails 
+Desktop Publishing 
+Network Security 
+Geographical Information System 
+Ubuntu 
+Windows Server 
+Windows 
+MacOS 
+Cisco 
+Embedded System 
+Phone Support

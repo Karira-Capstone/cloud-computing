@@ -1,270 +1,37 @@
-php
-mysql
-codeigniter
-web programming
-html
-javascript
-laravel framework
-css
-bootstrap
-jquery
-website
-database programming
-android
-java
-programming
-json
-ajax
-android studio
-web design
-wordpress
-python
-mobile programming
-css templates
-api gateway
-nodejs
-content management system (cms)
-yii
-web scrapping
-sql server
-opencart
-cakephp
-website building
-desktop programming
-.net framework
-e-commerce
-linux
-xhtml
-visualbasic
-c/c++
-java native
-angularjs
-postgresql
-delphi
-woocommerce
-reactjs
-website templates
-mvc
-google maps
-phpbb
-cpanel
-vuejs
-apache
-visual studio
-c#
-prestashop
-nginx
-networking
-delphi xe/xe2
-network security
-ms sql
-ionic framework
-flutter
-visual studio code
-adobe photoshop
-wordpress templates
-microsoft excel
-linux administration
-ui design
-.net compact framework
-xml
-data mining
-tutorial/assistant
-iphone/ios
-joomla
-imacros
-asp.net
-ruby on rails
-react native
-magento
-geographical information system
-git
-flask python
-ubuntu
-.net micro framework
-zend framework
-accounting
-windows programming
-phyton
-data analysis
-ruby
-email marketing
-email handling
-data integration
-cross platform programming
-java spring mvc
-golang
-blogspot
-administration
-xcode
-writing
-linux programming
-facebook
-ux design
-github
-email support
-web research
-swift
-integration
-analysis
-adobe flash
-telegram
-software installation
-social media marketing (smm)
-smarty templates
-instagram
-drupal
-data entry
-mikrotik
-whmcs
-search engine optimization (seo)
-microsoft access
-django framework
-blog
-apache cordova
-.net/mono
-windows server
-reviews
-phonegap
-penetration testing
-multimedia programming
-microsoft visual basic net
-kotlin
-internet marketing
-google cloud developer
-flash/actionscript
-cryptography
-business analysis
-arduino
-actionscript
-symfony
-perl
-oracle
-microsoft word
-matlab
-graphic design
-google cloud platform
-geospatial
-affiliate marketing
-whm
-vb.net
-technical support
-ssh
-robotics
-java swing
-forums
-firmware programming
-drupal templates
-backbone.js
-aws cloud
-app inventor
-twitter
-sales and marketing
-order processing
-netbeans
-mongodb
-matematika
-google web toolkit (gwt)
-google app engine
-form processing
-design arts
-copywriter
-cms made simple
-business consultation
-bash/shell
-autoit
-amazon service cloud
-administrative support
-vbulletin
-translation
-technical analysis
-support service
-statistical analysis
-objective c
-mozilla
-microsoft office
-microcontroller
-google cloud engine
-global positioning system
-game programming
-firebird
-erp
-english
-delphi 2010 seattle
-debian
-coreldraw
-content writer
-business service
-business document translation
-advertising
-adobe dreamweaver
-youtube
-xamarin
-windows mobile
-windows
-unity 3d
-transcription
-telemarketing
-spa (single page apps)
-smart card programming
-remotepc
-phone support
-personal assistant
-mvvm
-meteorjs
-market research
-logo design
-homework
-google charts
-entity framework
-dev manager
-business proposals
-business plans
-bluestacks
-blue tick whatapp
-artificial intelligence
-appmakr
-animation
-adobe illustrator
-zen cart
-video production
-video editing
-vaadin framework.
-theappbuilder
-teamviewer
-sketch
-scriptaculous
-rfid
-retyping
-quesioner
-qcodo/qcubed
-pricing
-pentaho
-oscommerce
-multimedia
-microsoft powerpoint
-marketing strategy
-machine learning
-illustration
-google workspace
-google adwords
-genymotion
-firewall
-ember.js
-ebook
-desktop publishing
-data science
-concrete5
-cakewalk
-audio production
-audio editing
-architecture
-appy pie
-appraisal
-appmachine
-app geyser
-antivirus
-adobe indesign
-activedirectory
-3d rendering
-3d animation
+C/C++
+PHP
+Objective C
+C#
+Objective-C
+Ember.js
+MeteorJS
+React Native
+Golang
+ReactJS
+Java
+Web Scrapping
+Linux Programming
+Laravel Framework
+JavaScript
+Desktop Programming
+Smart card programming
+Multimedia Programming
+Cross Platform Programming
+Firmware Programming
+Programming
+Java Native
+JSON
+NodeJS
+jQuery
+Backbone.js
+Django Framework
+CodeIgniter
+Nginx
+PostgreSQL
+Mac OS Programming
+Windows Programming
+API Gateway
+NetBeans
+VueJS
+Assembly 
+Ruby 

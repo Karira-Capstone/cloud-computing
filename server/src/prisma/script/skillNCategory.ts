@@ -18,7 +18,7 @@ const createSkillNCategory = async (fileName: string): Promise<void> => {
     console.log(`Adding ${skills.length} skills from ${fileName}`);
     await db.category.create({
       data: {
-        title: fileName.charAt(0).toUpperCase() + fileName.replace('.txt', '').slice(1),
+        title: fileName.replace('.txt', ''),
         skills: {
           createMany: {
             data: skills.map((skill) => {
