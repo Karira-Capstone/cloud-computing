@@ -9,7 +9,6 @@ export const getNotifications = async (
 ) => {
   try {
     const user = request.pre.user as User;
-    const limit = Number(request.query.limit || 10);
     return await db.notification.findMany({
       where: {
         user_id: user.id,
@@ -17,7 +16,6 @@ export const getNotifications = async (
       orderBy: {
         created_at: 'desc',
       },
-      take: limit,
     });
   } catch (error) {
     if (Boom.isBoom(error)) {
