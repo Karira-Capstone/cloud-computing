@@ -15,6 +15,7 @@ export const findServiceHandler = async (
       include: {
         category: true,
         reviews: true,
+        skills: true,
         worker: {
           include: {
             user: true,

@@ -9,12 +9,19 @@ export const searchServiceHandler = async (
   try {
     const title = request.query.q;
     const services = await db.service.findMany({
-      where:{
-        title:{
+      where: {
+        title: {
           contains: title,
-        }
+        },
       },
-    })
+      include: {
+        worker: {
+          include: {
+            user: true,
+          },
+        },
+      },
+    });
     return services;
   } catch (error) {
     if (Boom.isBoom(error)) {
