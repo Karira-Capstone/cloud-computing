@@ -26,11 +26,6 @@ export const createProjectHandler = async (
             id: user.client.id,
           },
         },
-        category: {
-          connect: {
-            id: payload.category.id,
-          },
-        },
       },
     });
     return project;

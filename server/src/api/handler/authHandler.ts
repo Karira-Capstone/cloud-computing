@@ -33,6 +33,7 @@ export const authHandler = async (
     }
     return {
       token: createToken(user),
+      user: user,
     };
   } catch (error) {
     request.log('error', error);
