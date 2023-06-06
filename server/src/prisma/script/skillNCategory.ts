@@ -4,7 +4,7 @@ import fs from 'fs';
 import events from 'events';
 import readline from 'readline';
 
-const createSkillNCategory = async (fileName: string): Promise<void> => {
+const createSkillNCategory = async (fileName: string, id: number): Promise<void> => {
   try {
     const rl = readline.createInterface({
       input: fs.createReadStream(`${__dirname}/skills/${fileName}`),
@@ -18,7 +18,8 @@ const createSkillNCategory = async (fileName: string): Promise<void> => {
     console.log(`Adding ${skills.length} skills from ${fileName}`);
     await db.category.create({
       data: {
-        title: fileName.replace('.txt', ''),
+        id: id,
+        title: fileName.replace('.txt', '').replace('_and_', '/'),
         skills: {
           createMany: {
             data: skills.map((skill) => {
@@ -36,5 +37,10 @@ const createSkillNCategory = async (fileName: string): Promise<void> => {
 };
 
 export const seedSkillNCategory = async () => {
-  await Promise.all(fs.readdirSync(`${__dirname}/skills`).map((fileName) => createSkillNCategory(fileName)));
+  await Promise.all(
+    fs
+      .readdirSync(`${__dirname}/skills`)
+      .sort()
+      .map((fileName, idx) => createSkillNCategory(fileName, idx + 1)),
+  );
 };
