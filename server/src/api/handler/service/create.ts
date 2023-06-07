@@ -2,6 +2,7 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { SERVICE_STATUS, User, Worker } from '@prisma/client';
 import { db } from '../../../prisma';
+import { PUBSUB_CONFIG, pubSubClient } from '../../../google/pubsub';
 
 export const createServiceHandler = async (
   request: Request<ReqRefDefaults>,
@@ -25,6 +26,9 @@ export const createServiceHandler = async (
           },
         },
       },
+    });
+    await pubSubClient.topic(PUBSUB_CONFIG.TOPIC.SERVICE_CREATED).publishMessage({
+      data: Buffer.from(JSON.stringify(service)),
     });
     return service;
   } catch (error) {
