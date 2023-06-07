@@ -1,11 +1,16 @@
 steps:
   # build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server:1.03', './server']
+    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server', './server']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/recommendation', './recommendation']
     # push the container image
   - name: 'gcr.io/cloud-builders/docker'
-    # args: ['push', 'gcr.io/$PROJECT_ID/docker-repo']
-    args: ['push', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server:1.03']
+    args: ['push', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/recommendation']
     # deploy to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
@@ -14,7 +19,7 @@ steps:
         'deploy',
         'karira-server',
         '--image',
-        'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server:1.03',
+        'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/server',
         '--region',
         'asia-southeast2',
         '--platform',
@@ -27,6 +32,25 @@ steps:
         '--port',
         '8000',
       ]
-
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      [
+        'run',
+        'deploy',
+        'karira-recommendation',
+        '--image',
+        'asia-southeast2-docker.pkg.dev/$PROJECT_ID/docker-karira/recommendation',
+        '--region',
+        'asia-southeast2',
+        '--platform',
+        'managed',
+        '--allow-unauthenticated',
+        '--cpu',
+        '2',
+        '--memory',
+        '4Gi',
+        '--port',
+        '8000',
+      ]
 options:
   logging: CLOUD_LOGGING_ONLY

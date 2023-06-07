@@ -1,0 +1,275 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  // binaryTargets = env("PRISMA_BINARY_TARGETS")
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  full_name     String
+  role          USER_ROLE      @default(UNDEFINED)
+  picture       String
+  created_at    DateTime       @default(now())
+  onboarded     Boolean        @default(false)
+  is_active     Boolean        @default(true)
+  last_login    DateTime
+  device_token  String?        @db.Text
+  admin         Admin?
+  worker        Worker?
+  client        Client?
+  notification  Notification[]
+  used_payments UsedPayment[]
+}
+
+model Admin {
+  id      Int        @id @default(autoincrement())
+  user    User       @relation(fields: [user_id], references: [id])
+  user_id String     @unique
+  logs    AdminLog[]
+}
+
+model AdminLog {
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  description String   @db.Text
+  admin_id    Int
+  admin       Admin    @relation(fields: [admin_id], references: [id])
+}
+
+model Worker {
+  id              Int       @id @default(autoincrement())
+  phone           String
+  identity_number String
+  birth_date      DateTime
+  province        String
+  city            String
+  address         String    @db.Text
+  description     String    @db.Text
+  avg_rating      Int       @default(0)
+  num_of_reviews  Int       @default(0)
+  num_of_order    Int       @default(0)
+  user_id         String    @unique
+  user            User      @relation(fields: [user_id], references: [id])
+  services        Service[]
+  skills          Skill[]
+  bids            Bid[]
+  orders          Order[]
+  reviews         Review[]
+}
+
+model Client {
+  id              Int       @id @default(autoincrement())
+  phone           String
+  identity_number String
+  birth_date      DateTime
+  province        String
+  city            String
+  address         String    @db.Text
+  description     String    @db.Text
+  avg_rating      Int       @default(0)
+  num_of_reviews  Int       @default(0)
+  user_id         String    @unique
+  user            User      @relation(fields: [user_id], references: [id])
+  projects        Project[]
+  orders          Order[]
+  reviews         Review[]
+}
+
+model Project {
+  id           Int            @id @default(autoincrement())
+  created_at   DateTime       @default(now())
+  last_updated DateTime       @updatedAt
+  title        String
+  type         PROJECT_STATUS
+  lower_bound  Int
+  upper_bound  Int
+  duration     Int
+  description  String         @db.Text
+  attachment   String?
+  client_id    Int
+  category_id  Int?
+  client       Client         @relation(fields: [client_id], references: [id])
+  category     Category?      @relation(fields: [category_id], references: [id])
+  bids         Bid[]
+  order        Order[] //Kalau order batal, bisa tambah lagi
+  skills       Skill[]
+}
+
+model Service {
+  id             Int            @id @default(autoincrement())
+  created_at     DateTime       @default(now())
+  last_updated   DateTime       @updatedAt
+  type           SERVICE_STATUS
+  title          String
+  price          Int
+  images         Json
+  description    String         @db.Text
+  avg_rating     Int            @default(0)
+  num_of_reviews Int            @default(0)
+  worker_id      Int
+  category_id    Int?
+  worker         Worker         @relation(fields: [worker_id], references: [id])
+  category       Category?      @relation(fields: [category_id], references: [id])
+  orders         Order[]
+  reviews        Review[]
+  skills         Skill[]
+}
+
+model Bid {
+  id         Int      @id @default(autoincrement())
+  price      Int
+  message    String   @db.Text
+  selected   Boolean  @default(false)
+  created_at DateTime @default(now())
+  worker_id  Int
+  project_id Int
+  worker     Worker   @relation(fields: [worker_id], references: [id])
+  project    Project  @relation(fields: [project_id], references: [id])
+  order      Order?
+}
+
+model Order {
+  id               Int          @id @default(autoincrement())
+  type             ORDER_TYPE
+  price            Int
+  description      String       @db.Text
+  attachment       String?
+  status           ORDER_STATUS
+  created_at       DateTime     @default(now())
+  proof_of_payment String?
+  bid_id           Int?         @unique
+  service_id       Int?
+  client_id        Int
+  worker_id        Int
+  project_id       Int?
+  bid              Bid?         @relation(fields: [bid_id], references: [id])
+  service          Service?     @relation(fields: [service_id], references: [id])
+  project          Project?     @relation(fields: [project_id], references: [id])
+  client           Client       @relation(fields: [client_id], references: [id])
+  worker           Worker       @relation(fields: [worker_id], references: [id])
+  reviews          Review[]
+  payment          Payment?
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  title    String
+  services Service[]
+  projects Project[]
+  skills   Skill[]
+}
+
+model Skill {
+  id          Int       @id @default(autoincrement())
+  title       String
+  workers     Worker[]
+  category_id Int
+  category    Category? @relation(fields: [category_id], references: [id])
+  projects    Project[]
+  services    Service[]
+}
+
+model Review {
+  id          Int         @id @default(autoincrement())
+  type        REVIEW_TYPE
+  anonymize   Boolean
+  score       Int
+  description String      @db.Text
+  worker_id   Int
+  client_id   Int
+  service_id  Int?
+  order_id    Int
+  worker      Worker      @relation(fields: [worker_id], references: [id])
+  client      Client      @relation(fields: [client_id], references: [id])
+  service     Service?    @relation(fields: [service_id], references: [id])
+  order       Order       @relation(fields: [order_id], references: [id])
+}
+
+model Notification {
+  id          Int               @id @default(autoincrement())
+  created_at  DateTime          @default(now())
+  type        NOTIFICATION_TYPE
+  title       String
+  description String            @db.Text
+  is_seen     Boolean           @default(false)
+  user_id     String
+  user        User              @relation(fields: [user_id], references: [id])
+}
+
+model Payment {
+  id                Int            @id @default(autoincrement())
+  amount            Int
+  order_id          Int            @unique
+  payment_method_id Int
+  order             Order          @relation(fields: [order_id], references: [id])
+  payment_method    PaymentMethod? @relation(fields: [payment_method_id], references: [id])
+}
+
+model UsedPayment {
+  user_id             String
+  payment_provider_id Int
+  payment_number      String
+  user                User          @relation(fields: [user_id], references: [id])
+  paymentMethod       PaymentMethod @relation(fields: [payment_provider_id], references: [id])
+
+  @@id([user_id, payment_provider_id])
+}
+
+model PaymentMethod {
+  id             Int           @id @default(autoincrement())
+  title          String
+  is_functioning Boolean       @default(true)
+  usedPayment    UsedPayment[]
+  payment        Payment[]
+}
+
+enum USER_ROLE {
+  ADMIN
+  WORKER
+  CLIENT
+  UNDEFINED
+}
+
+enum ORDER_TYPE {
+  BID
+  SERVICE
+}
+
+enum SERVICE_STATUS {
+  ONREVIEW
+  APPROVED
+  CLOSED
+}
+
+enum PROJECT_STATUS {
+  ONREVIEW
+  APPROVED
+  INPROGRESS
+  CLOSED
+}
+
+enum ORDER_STATUS {
+  CREATED
+  ACCEPTED
+  PAID
+  FINISHED
+  CANCELLED
+}
+
+enum REVIEW_TYPE {
+  FOR_WORKER
+  FOR_SERVICE
+  FOR_CLIENT
+}
+
+enum NOTIFICATION_TYPE {
+  OTHER
+}

@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/pubsub": "^3.7.0",
     "@google-cloud/storage": "^6.10.1",
     "@hapi/hapi": "^21.3.2",
     "@hapi/jwt": "^3.2.0",

@@ -2,6 +2,7 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { Client, PROJECT_STATUS, User } from '@prisma/client';
 import { db } from '../../../prisma';
+import { PUBSUB_CONFIG, pubSubClient } from '../../../google/pubsub';
 
 export const createProjectHandler = async (
   request: Request<ReqRefDefaults>,
@@ -27,6 +28,9 @@ export const createProjectHandler = async (
           },
         },
       },
+    });
+    await pubSubClient.topic(PUBSUB_CONFIG.TOPIC.PROJECT_CREATED).publishMessage({
+      data: Buffer.from(JSON.stringify(project)),
     });
     return project;
   } catch (error) {

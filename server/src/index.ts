@@ -1,7 +1,15 @@
 import Hapi, { Server } from '@hapi/hapi';
 import jwt, { HapiJwt } from '@hapi/jwt';
 import { jwt_user_strategy } from './api/config/authentication';
-import { clientRoute, orderRoute, projectRoute, route, serviceRoute, uploadRoute, workerRoute } from './api/handler';
+import {
+  clientRoute,
+  orderRoute,
+  projectRoute,
+  route,
+  serviceRoute,
+  uploadRoute,
+  workerRoute,
+} from './api/handler';
 import { userRoute } from './api/handler/user';
 const init = async function () {
   const server: Server = Hapi.server({
@@ -25,7 +33,7 @@ const init = async function () {
   server.route(serviceRoute);
   server.route(workerRoute);
   server.route(userRoute);
-  server.route(uploadRoute)
+  server.route(uploadRoute);
 
   await server.start();
   console.log('Server running on %s', server.info.uri);

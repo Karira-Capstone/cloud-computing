@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "karira-project",
+  "private_key_id": "76b6c14a116e7fc97c7cb97bee43793427db8cc7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4D//j0XWuow+9\nBegvJTMpL9E981zg6xGRjYMt0Nq19Doa4HCqptwZwWsD0FUdncqn8aKPxEx5PWED\n5vgO8kgR9tm7V9tiZFvnklukWYDxIf0Q2c6vWQb0Tvlq3MCe02InLmSsjO3Sie5v\nLniutWwUqS9z4mDJU6Y87QNg61gW6BCDrk8ZZvxKbhpKPTs6i11/DfM8kZ6g4sPr\nDCAatN6DKAnQTv3T7RoRs13OocZ5dVU0r9pyW6yIAzEOt3ku8l4TildV7uVghxBL\nAIes3bJjAGdD/uufK5ABSxm/+NjlruakPUd8BsqQEpZZRFjqjiSDnJlQ2BzgaGJ1\n3YWNUpHHAgMBAAECggEAF2bOsEa2QUuGubqhiDT2PztOzXiT4MjM8AY08m3xELHf\ncqwBxxX15T8RKGf5b7gwcY/S4kJ2kpzk08aELVT30sjhao9DW6F03zQIJhTMbwaq\nPSqOu6kvAtVzoqGJypJc6AG0V7fcmNMOlzYqWSlvIhAB8ig1tAMdn0tnDZB+dP2O\n3piCYZgjSHEziL5SWTrF+s1ar/H9khJztPLJ3rtjkDa9IyWoqt9Mny3I8HuW1TEO\nK4e6M6TJLdJ/DKHv5xrTv0fhDeWQORlorzpgv5e1+612h6Fn1NeTmThAa7mk8yU3\n30kmjy+NZg9+o5gpGhE13xlWTgTByKlkkyNDPRhEMQKBgQDtTT5QSwWIswAa1gqG\nDTHrQZsHwIuUxlT0scrXR/BG0mgsvUakNvM+Lac1XLQK/j6GhUxxDrZNRhRZrIAC\nUasfeckzy/thQ+x3OeBS5Zrrw0moCMG19IZu87PEtornsO3gvaEqacqPfCdFpQXV\n+ZVy7r5v+kWuWVaLRPv0ESds2QKBgQDGkNXdlJgNIXTRun+QuM+Kqwzu0vtE9DUg\nkVMZe4uxhVE/XOirXOMuD94Rno3NpU8ZQ6S9DHZ5BBs9sydMJZwzOCLkLEv0pHmw\nctNBGXacCgZLY9ZaX6/riedeQTDiPWcVg3F77OcOl3C6CulgEBr+Ud0AhrQxYoYH\nwk/DOddPnwKBgQCECgDsSHIx1/fs9sAwStNF5eFPdPG1vI21AeCt3RdzMMxKaJ8P\n7It4Q4rQhF6h50n/K9iW5+rEIIReST+JCsw+3VL5AT1Ep7jBtnB9b8i9+pHXb9fp\nWMAcqHmUsUWlGaui66DrqqXNJPXtKJ+QqilgJDvOruFq28buA1p2Ob1IMQKBgDJE\nkk/BAWk5kghSLV8m2iuht+lx8fh31kdDYwUteKTdOj9PNvvCzSRpEe/l8sIf2lFs\nBXVyhT+HoZnSE928G7n/uR2IdUYeqUvZFdACMTu5cfR99tL0LGX1iGQdHtH3d3RD\nzWPxCmFwRzJh9sjB6wN9F/S9JTrnVUT7lRO4PeDDAoGAOCdTvO0yndWRvPuE2Iq8\ng155+iIFc/ejPCHPPhxcCfU+hcGIwoyIxBJ2yZUkVi3NLRUOVa2zDX30kQt6kEiy\nKYsuCSwrmlXETJXwSjeHY8EcoBwJdcsjgIRNE53V0/Bmu3+JPckE+vu3NZ33/QWj\nK6Yf42TMY+1mirThKvt+RlU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "pub-sub-publisher@karira-project.iam.gserviceaccount.com",
+  "client_id": "111391132103513461442",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pub-sub-publisher%40karira-project.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
