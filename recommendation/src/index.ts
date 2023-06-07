@@ -9,11 +9,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/api/recommendation/hello", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Hello World");
 });
 
-app.post("/api/recommendation/project", async (req, res) => {
+app.post("/api/project", async (req, res) => {
   try {
     await projectCreatedHandler(req.body);
     res.sendStatus(200);
@@ -23,7 +23,7 @@ app.post("/api/recommendation/project", async (req, res) => {
   }
 });
 
-app.post("/api/recommendation/service", async (req, res) => {
+app.post("/api/service", async (req, res) => {
   try {
     await serviceCreatedHandler(req.body);
     res.sendStatus(200);
