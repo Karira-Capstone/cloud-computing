@@ -15,7 +15,8 @@ app.get("/api/recommendation/hello", (req, res) => {
 
 app.post("/api/recommendation/project", async (req, res) => {
   try {
-    await projectCreatedHandler(req.body);
+    const data = JSON.parse(atob(req.body.message.data))
+    await projectCreatedHandler(data);
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
@@ -25,9 +26,8 @@ app.post("/api/recommendation/project", async (req, res) => {
 
 app.post("/api/recommendation/service", async (req, res) => {
   try {
-    console.log(req.body.message)
-    console.log(JSON.parse(atob(req.body.message.data)));
-    // await serviceCreatedHandler(req.body);
+    const data = JSON.parse(atob(req.body.message.data))
+    await serviceCreatedHandler(data);
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
