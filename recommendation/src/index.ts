@@ -8,6 +8,7 @@ const init = async () => {
 
   const serviceCreatedSubscription = pubSubClient.subscription(PUBSUB_CONFIG.SUBSCRIPTION.SERVICE_CREATED);
   serviceCreatedSubscription.on('message', serviceCreatedHandler);
+  console.log("Started")
 };
 
 init();
