@@ -25,7 +25,8 @@ app.post("/api/recommendation/project", async (req, res) => {
 
 app.post("/api/recommendation/service", async (req, res) => {
   try {
-    console.log(req.body);
+    console.log(req.body.message)
+    console.log(JSON.parse(atob(req.body.message.data)));
     // await serviceCreatedHandler(req.body);
     res.sendStatus(200);
   } catch (err) {
