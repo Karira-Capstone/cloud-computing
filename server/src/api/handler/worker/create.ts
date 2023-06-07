@@ -16,13 +16,13 @@ export const createWorkerHandler = async (
     }
     const worker = await db.worker.create({
       data: {
-        address: payload.address,
-        birth_date: new Date(payload.birth_date),
-        city: payload.city,
-        description: payload.description,
-        identity_number: payload.identity_number,
-        phone: payload.phone,
-        province: payload.province,
+        address: "",
+        birth_date: "",
+        city: "",
+        description: "",
+        identity_number: "",
+        phone: "",
+        province: "",
         user: {
           connect: {
             id: user.id,
