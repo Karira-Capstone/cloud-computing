@@ -1,8 +1,7 @@
 import { Service } from "@prisma/client";
-import { db } from "../../../prisma";
+import { db } from "../prisma";
 
-export const serviceCreatedHandler = async (message: any)=>{
-    const data = JSON.parse(message.data.toString()) as Service;
+export const serviceCreatedHandler = async (data: any)=>{
     const { id, title, description } = data;
     const predictedSkills = (
       await db.skill.findMany({
@@ -42,5 +41,4 @@ export const serviceCreatedHandler = async (message: any)=>{
     });
   
     console.log("Updated Service");
-    message.ack();
 }
