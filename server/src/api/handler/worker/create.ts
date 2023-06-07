@@ -16,13 +16,6 @@ export const createWorkerHandler = async (
     }
     const worker = await db.worker.create({
       data: {
-        address: "",
-        birth_date: "",
-        city: "",
-        description: "",
-        identity_number: "",
-        phone: "",
-        province: "",
         user: {
           connect: {
             id: user.id,
