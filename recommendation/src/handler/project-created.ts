@@ -1,8 +1,7 @@
 import { Project } from "@prisma/client";
-import { db } from "../../../prisma";
+import { db } from "../prisma";
 
-export const projectCreatedHandler = async (message: any) => {
-  const data = JSON.parse(message.data.toString()) as Project;
+export const projectCreatedHandler = async (data: any) => {
   console.log(data);
   const { id, title, description, duration } = data;
   const predictedSkills = (
@@ -44,5 +43,4 @@ export const projectCreatedHandler = async (message: any) => {
   });
 
   console.log("Updated project");
-  message.ack();
 };
