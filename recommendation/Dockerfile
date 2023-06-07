@@ -13,4 +13,5 @@ COPY . ./
 # If you are building your code for production
 RUN npm install
 # Bundle app source
+EXPOSE 8000
 CMD [ "npm", "run", "start" ]
