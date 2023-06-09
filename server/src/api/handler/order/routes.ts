@@ -11,8 +11,25 @@ import {
   finishOrderHandler,
   rejectOrderHandler,
 } from '.';
+import { callbackFailed } from './transaction/callback';
+import { callbackOrder } from './transaction/handling';
 
 export const orderRoute: ServerRoute<ReqRefDefaults>[] = [
+  {
+    method: 'POST',
+    path: '/api/orders',
+    handler: callbackOrder,
+  },
+  {
+    method: 'GET',
+    path: '/api/orders',
+    handler: callbackOrder,
+  },
+  {
+    method: 'GET',
+    path: '/api/orders/failed',
+    handler: callbackFailed,
+  },
   {
     method: 'GET',
     path: '/api/orders/{orderId}',

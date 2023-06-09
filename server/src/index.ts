@@ -44,18 +44,33 @@ const initDev = async () => {
   await init();
   let parameter = {
     transaction_details: {
-      order_id: 'test-transaction-123',
-      gross_amount: 200000,
+      order_id: "ayam",
+      gross_amount: 27500,
     },
-    credit_card: {
-      secure: true,
+    item_details: [
+      {
+        id: 'id1',
+        price: 27500,
+        quantity: 1,
+        name: 'Bluedio H+ Turbine Headphone with Bluetooth 4.1 -',
+      },
+    ],
+    customer_details: {
+      first_name: 'Budi',
+      last_name: 'Utomo',
+      email: 'budi.utomo@midtrans.com',
+      phone: '081223323423',
     },
   };
+  console.log("ayam")
   midtransSnap.createTransaction(parameter).then((transaction) => {
     // transaction token
     let transactionToken = transaction.token;
+    console.log(transaction);
     console.log('transactionToken:', transactionToken);
-  });
+  }).catch((error) => {
+    console.error(error);
+  })
 };
 
 initDev();
