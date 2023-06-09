@@ -2,7 +2,7 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { User, Worker } from '@prisma/client';
 import { db } from '../../../prisma';
-import { notificationOnOrderRejected } from '../../../google/messaging/notification';
+import { notificationOnOrderRejected } from '../../../lib/messaging/notification';
 
 export const rejectOrderHandler = async (
   request: Request<ReqRefDefaults>,

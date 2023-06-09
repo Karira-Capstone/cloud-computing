@@ -1,6 +1,6 @@
 import Boom from '@hapi/boom';
 import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
-import { firebaseAdmin } from '../../google/firebase';
+import { firebaseAdmin } from '../../lib/firebase';
 import { getAuth } from 'firebase-admin/auth';
 import { db } from '../../prisma/index';
 import { createToken } from '../config/authentication';

@@ -11,6 +11,7 @@ import {
   workerRoute,
 } from './api/handler';
 import { userRoute } from './api/handler/user';
+import midtransSnap from './lib/midtrans';
 const init = async function () {
   const server: Server = Hapi.server({
     port: process.env.PORT || 8000,
@@ -41,6 +42,20 @@ const init = async function () {
 
 const initDev = async () => {
   await init();
+  let parameter = {
+    transaction_details: {
+      order_id: 'test-transaction-123',
+      gross_amount: 200000,
+    },
+    credit_card: {
+      secure: true,
+    },
+  };
+  midtransSnap.createTransaction(parameter).then((transaction) => {
+    // transaction token
+    let transactionToken = transaction.token;
+    console.log('transactionToken:', transactionToken);
+  });
 };
 
 initDev();
