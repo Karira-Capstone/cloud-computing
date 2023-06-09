@@ -15,7 +15,8 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy the application code
 COPY . .
-COPY browse_project_model /app/browse_project_model/my_model  
+COPY browse_project_model /app/browse_project_model/my_model
+COPY vocab/projects_budget_vocab.txt /app/vocab/projects_budget_vocab.txt
 
 # Add this line to copy the model file
 

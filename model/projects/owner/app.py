@@ -5,6 +5,14 @@ import requests
 
 app = Flask(__name__)
 
+def vocab():
+    vocab = []
+    with open("/app/vocab/service_tags_vocab.txt") as fp:
+        for line in fp:
+            x = line.strip()
+            vocab.append(x)
+    return vocab
+
 # owner = keras.models.load_model(r"D:\Coding\karira2\owner\my_model")
 owner = keras.models.load_model("/app/worker/my_model")
 

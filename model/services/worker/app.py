@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 def vocab():
     vocab = []
-    with open("/app/vocab/projects_budget_vocab.txt") as fp:
+    with open("/app/vocab/projects_tags_vocab.txt") as fp:
         for line in fp:
             x = line.strip()
             vocab.append(x)
@@ -28,7 +28,7 @@ def predict():
                                        key=lambda pair: pair[0],
                                        reverse=True)][:1]
     
-    return jsonify({"Rekomendasi Budget": prediction})
+    return jsonify({"Rekomendasi Tags": prediction})
 
 def test_flask_app():
     url = 'http://localhost:5000/predict'
