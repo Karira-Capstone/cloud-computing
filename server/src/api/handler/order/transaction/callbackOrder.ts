@@ -2,10 +2,6 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { db } from '../../../../prisma';
 import crypto from 'crypto';
-import {
-  notificationOnPaymentAccepted,
-  notificationOnPaymentFailed,
-} from '../../../../lib/messaging/notification';
 
 export const callbackOrder = async (
   request: Request<ReqRefDefaults>,

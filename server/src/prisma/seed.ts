@@ -4,6 +4,8 @@ import { seedSkillNCategory } from './script/skillNCategory';
 import { seedUser } from './script/user';
 import { seedProject } from './script/projects';
 import { seedServices } from './script/services';
+import { seedOrder } from './script/orders';
+import { seedTags } from './script/tags';
 
 const resetNSeed = async ()=>{
   console.log("Purging all data...")
@@ -13,6 +15,9 @@ const resetNSeed = async ()=>{
   console.log("Seeding new projects and services...")
   await seedProject()
   await seedServices()
+  await seedTags()
+  console.log("Seeding new Orders")
+  await seedOrder()
   console.log("Done!")
 }
 

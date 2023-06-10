@@ -1,6 +1,4 @@
 import midtransClient from 'midtrans-client';
-
-console.log(process.env.SERVER_KEY)
 const midtransSnap = new midtransClient.Snap({
   isProduction: true,
   serverKey: process.env.SERVER_KEY,
