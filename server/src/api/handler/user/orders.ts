@@ -31,6 +31,11 @@ export const getYourOwnOrderHandler = async (
             user: true,
           },
         },
+        worker:{
+          include: {
+            user: true
+          }
+        },
         project: true,
         service: true,
       },
