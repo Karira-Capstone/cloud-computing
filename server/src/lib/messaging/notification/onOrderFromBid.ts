@@ -17,7 +17,7 @@ export const notificationOnOrderFromBid = async (order_id: number) => {
   });
   await notificationPublisher(
     order.worker.user,
-    'Tawaran Diterima',
+    'Tawaran Diterima!',
     `Tawaran Kamu Untuk ${order.project.title} Disetujui`,
   );
 };

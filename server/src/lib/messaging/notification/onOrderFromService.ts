@@ -17,7 +17,7 @@ export const notificationOnOrderFromService = async (order_id: number) => {
   });
   await notificationPublisher(
     order.worker.user,
-    'Ada Pesanan',
+    'Ada Pesanan Baru',
     `Ada yang memesan layanan ${order.service.title} milikmu`,
   );
 };
