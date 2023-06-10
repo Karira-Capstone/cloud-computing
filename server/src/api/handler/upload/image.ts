@@ -1,5 +1,5 @@
 import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
-import { storageAdmin } from '../../../google/storage';
+import { storageAdmin } from '../../../lib/storage';
 import { User } from '@prisma/client';
 import Boom from '@hapi/boom';
 

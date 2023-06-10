@@ -2,7 +2,7 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { User, Worker } from '@prisma/client';
 import { db } from '../../../prisma';
-import { notificationOnBid } from '../../../google/messaging/notification/onBid';
+import { notificationOnBid } from '../../../lib/messaging/notification/onBid';
 
 export const createBidForProjectHandler = async (
   request: Request<ReqRefDefaults>,

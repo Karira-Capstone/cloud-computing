@@ -2,7 +2,7 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { SERVICE_STATUS, User, Worker } from '@prisma/client';
 import { db } from '../../../prisma';
-import { PUBSUB_CONFIG, pubSubClient } from '../../../google/pubsub';
+import { PUBSUB_CONFIG, pubSubClient } from '../../../lib/pubsub';
 
 export const createServiceHandler = async (
   request: Request<ReqRefDefaults>,

@@ -2,7 +2,7 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { Client, PROJECT_STATUS, User } from '@prisma/client';
 import { db } from '../../../prisma';
-import { PUBSUB_CONFIG, pubSubClient } from '../../../google/pubsub';
+import { PUBSUB_CONFIG, pubSubClient } from '../../../lib/pubsub';
 
 export const createProjectHandler = async (
   request: Request<ReqRefDefaults>,

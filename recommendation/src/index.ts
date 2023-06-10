@@ -1,4 +1,3 @@
-import { PUBSUB_CONFIG, createSubscription, pubSubClient } from "./google/pubsub";
 import { projectCreatedHandler } from "./handler/project-created";
 import { serviceCreatedHandler } from "./handler/service-created";
 import express from "express";
