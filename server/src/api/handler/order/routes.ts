@@ -8,6 +8,7 @@ import {
   createOrderFromServiceHandler,
   createReviewByClientHandler,
   createReviewByWorkerHandler,
+  createTransactionHandler,
   findOrderHandler,
   finishOrderHandler,
   rejectOrderHandler,
@@ -18,6 +19,12 @@ export const orderRoute: ServerRoute<ReqRefDefaults>[] = [
     method: 'POST',
     path: '/api/orders',
     handler: callbackOrder,
+  },
+  {
+    method: 'POST',
+    path: '/api/orders/payments/{orderId}',
+    handler: createTransactionHandler,
+    options: clientRouteConfig,
   },
   {
     method: 'GET',
