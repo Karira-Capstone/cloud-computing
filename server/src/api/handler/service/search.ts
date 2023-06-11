@@ -13,6 +13,9 @@ export const searchServiceHandler = async (
         title: {
           contains: title,
         },
+        type: {
+          in: ['APPROVED'],
+        },
       },
       include: {
         worker: {

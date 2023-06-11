@@ -13,6 +13,9 @@ export const searchProjectHandler = async (
         title: {
           contains: title,
         },
+        type: {
+          in: ['APPROVED', 'INPROGRESS'],
+        },
       },
       include: {
         client: {
