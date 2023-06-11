@@ -1,4 +1,4 @@
-import { MLProxyPredictProjectTag } from "../../lib/proxy";
+import { MLProxyPredictFindService, MLProxyPredictProjectTag } from "../../lib/proxy";
 import { db } from "../../prisma";
 
 export const projectCreatedHandler = async (req, res) => {
@@ -50,4 +50,47 @@ const projectCreated = async (data: any) => {
   });
 
   console.log("Updated project");
+  const client = await db.client.findUnique({
+    where: {
+      id: updatedProject.client_id,
+    },
+    include: {
+      projects: true,
+    },
+  });
+  const arr = [];
+  client.projects.forEach((project) => {
+    arr.push(project.title);
+    arr.push(project.description);
+  });
+  // find all projects related to this client
+  const predictedRecommendedTags = await MLProxyPredictFindService.predict(arr.join(" "));
+
+  const predictedRecommendedTagsObject = await db.skill.findMany({
+    where: {
+      title: {
+        in: predictedRecommendedTags,
+      },
+    },
+    include: {
+      category: true,
+    },
+  });
+  console.log(predictedRecommendedTagsObject);
+
+  await db.user.update({
+    where: {
+      id: client.user_id,
+    },
+    data: {
+      recommendation_tags: {
+        connect: predictedRecommendedTagsObject.map((x) => {
+          return {
+            id: x.id,
+          };
+        }),
+      },
+    },
+  });
+  console.log("Updated Recommendation To User!");
 };

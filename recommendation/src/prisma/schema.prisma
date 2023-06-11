@@ -12,21 +12,22 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(uuid())
-  email         String         @unique
-  full_name     String
-  role          USER_ROLE      @default(UNDEFINED)
-  picture       String
-  created_at    DateTime       @default(now())
-  onboarded     Boolean        @default(false)
-  is_active     Boolean        @default(true)
-  last_login    DateTime
-  device_token  String?        @db.Text
-  admin         Admin?
-  worker        Worker?
-  client        Client?
-  notification  Notification[]
-  used_payments UsedPayment[]
+  id                  String         @id @default(uuid())
+  email               String         @unique
+  full_name           String
+  role                USER_ROLE      @default(UNDEFINED)
+  picture             String
+  created_at          DateTime       @default(now())
+  onboarded           Boolean        @default(false)
+  is_active           Boolean        @default(true)
+  last_login          DateTime
+  device_token        String?        @db.Text
+  admin               Admin?
+  worker              Worker?
+  client              Client?
+  notification        Notification[]
+  used_payments       UsedPayment[]
+  recommendation_tags Skill[]
 }
 
 model Admin {
@@ -46,13 +47,13 @@ model AdminLog {
 
 model Worker {
   id              Int       @id @default(autoincrement())
-  phone           String
-  identity_number String
-  birth_date      DateTime
-  province        String
-  city            String
-  address         String    @db.Text
-  description     String    @db.Text
+  phone           String?
+  identity_number String?
+  birth_date      DateTime?
+  province        String?
+  city            String?
+  address         String?    @db.Text
+  description     String?    @db.Text
   avg_rating      Int       @default(0)
   num_of_reviews  Int       @default(0)
   num_of_order    Int       @default(0)
@@ -67,13 +68,13 @@ model Worker {
 
 model Client {
   id              Int       @id @default(autoincrement())
-  phone           String
-  identity_number String
-  birth_date      DateTime
-  province        String
-  city            String
-  address         String    @db.Text
-  description     String    @db.Text
+  phone           String?
+  identity_number String?
+  birth_date      DateTime?
+  province        String?
+  city            String?
+  address         String?    @db.Text
+  description     String?    @db.Text
   avg_rating      Int       @default(0)
   num_of_reviews  Int       @default(0)
   user_id         String    @unique
@@ -177,6 +178,7 @@ model Skill {
   category    Category? @relation(fields: [category_id], references: [id])
   projects    Project[]
   services    Service[]
+  users       User[]
 }
 
 model Review {
