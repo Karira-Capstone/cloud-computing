@@ -54,9 +54,10 @@ export abstract class MLPredictProxyClass extends MLProxyClass {
   protected extract5Highest(data: any) {
     const predictions = data.predictions;
     const numbers = predictions[0] as number[];
+    numbers.splice(0, 1);
     const _5highest = [0, 0, 0, 0, 0];
     const _5highestVocab = ["", "", "", "", ""];
-    console.log(this.modelname)
+    console.log(this.modelname);
     if (this.vocab.length != numbers.length) {
       console.log("VOCAB LENGTH AND PREDICTIONS DIFFERENT: " + this.vocab.length + " vs " + numbers.length);
     }
