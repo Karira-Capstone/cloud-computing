@@ -2,13 +2,14 @@ import { db } from '..';
 
 export const seedTags = async () => {
   const category = await db.category.findFirst({
-    include: {
+    where: {
       skills: {
-        take: 4,
+        some: {
+          id: 1,
+        },
       },
     },
   });
-
   const projects = await db.project.findMany();
   await Promise.all(
     projects.map((project) => {
@@ -19,9 +20,9 @@ export const seedTags = async () => {
         data: {
           category_id: category.id,
           skills: {
-            connect: category.skills.map((skill) => {
+            connect: [1, 2, 3, 4].map((skill) => {
               return {
-                id: skill.id,
+                id: skill,
               };
             }),
           },
@@ -39,9 +40,9 @@ export const seedTags = async () => {
         data: {
           category_id: category.id,
           skills: {
-            connect: category.skills.map((skill) => {
+            connect: [1,2,3,4].map((skill) => {
               return {
-                id: skill.id,
+                id: skill,
               };
             }),
           },

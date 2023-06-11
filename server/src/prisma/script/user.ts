@@ -43,6 +43,22 @@ export const seedUser = async () => {
           },
         },
       },
+      recommendation_tags: {
+        connect: [
+          {
+            id: 1,
+          },
+          {
+            id: 2,
+          },
+          {
+            id: 3,
+          },
+          {
+            id: 4,
+          },
+        ],
+      },
     },
   });
 
@@ -66,6 +82,22 @@ export const seedUser = async () => {
           phone: '628567681245',
           province: 'province1',
         },
+      },
+      recommendation_tags: {
+        connect: [
+          {
+            id: 1,
+          },
+          {
+            id: 2,
+          },
+          {
+            id: 3,
+          },
+          {
+            id: 4,
+          },
+        ],
       },
     },
   });

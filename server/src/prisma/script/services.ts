@@ -40,4 +40,22 @@ export const seedServices = async () => {
         };
       }),
   });
+  const services = await db.service.findMany();
+  // const promises = services.map((service) => {
+  //   return db.service.update({
+  //     where: {
+  //       id: service.id,
+  //     },
+  //     data: {
+  //       skills: {
+  //         connect: [1, 2, 3, 4].map((number) => {
+  //           return {
+  //             id: number,
+  //           };
+  //         }),
+  //       },
+  //     },
+  //   });
+  // });
+  // await Promise.all(promises);
 };

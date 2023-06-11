@@ -123,4 +123,23 @@ export const seedProject = async () => {
       },
     ],
   });
+
+  const project = await db.project.findMany();
+  // const promises = project.map((project) => {
+  //   return db.project.update({
+  //     where: {
+  //       id: project.id,
+  //     },
+  //     data: {
+  //       skills: {
+  //         connect: [1, 2, 3, 4].map((number) => {
+  //           return {
+  //             id: number,
+  //           };
+  //         }),
+  //       },
+  //     },
+  //   });
+  // });
+  // await Promise.all(promises);
 };

@@ -10,6 +10,7 @@ import {
   getNotifications,
   deleteNotification,
 } from '.';
+import { getYourRecommendation } from './recommendation';
 
 export const userRoute: ServerRoute<ReqRefDefaults>[] = [
   {
@@ -52,6 +53,12 @@ export const userRoute: ServerRoute<ReqRefDefaults>[] = [
     method: 'GET',
     path: '/api/users/notifications',
     handler: getNotifications,
+    options: authenticatedRouteConfig,
+  },
+  {
+    method: 'GET',
+    path: '/api/users/recommendations',
+    handler: getYourRecommendation,
     options: authenticatedRouteConfig,
   },
   {
