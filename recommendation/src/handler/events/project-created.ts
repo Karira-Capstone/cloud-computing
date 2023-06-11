@@ -1,14 +1,21 @@
-import { Project } from "@prisma/client";
-import { db } from "../prisma";
+import { MLProxyPredictProjectTag } from "../../lib/proxy";
+import { db } from "../../prisma";
 
-export const projectCreatedHandler = async (data: any) => {
+export const projectCreatedHandler = async (req, res) => {
+  try {
+    const data = JSON.parse(atob(req.body.message.data));
+    await projectCreated(data);
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+};
+
+const projectCreated = async (data: any) => {
   console.log(data);
   const { id, title, description, duration } = data;
-  const predictedSkills = (
-    await db.skill.findMany({
-      take: 2,
-    })
-  ).map((skill) => skill.title);
+  const predictedSkills = await MLProxyPredictProjectTag.predict(`${title} ${description} ${duration}`);
 
   const predictedSkillsObject = await db.skill.findMany({
     where: {
