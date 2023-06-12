@@ -16,7 +16,11 @@ const projectCreated = async (data: any) => {
   console.log(data);
   const { id, title, description, duration } = data;
   const predictedSkills = await MLProxyPredictProjectTag.predict(`${title} ${description} ${duration}`);
-
+  const mostProbableSkill = await db.skill.findFirst({
+    where: {
+      title: predictedSkills[0],
+    },
+  });
   const predictedSkillsObject = await db.skill.findMany({
     where: {
       title: {
@@ -35,7 +39,7 @@ const projectCreated = async (data: any) => {
     },
     data: {
       skills: {
-        connect: predictedSkillsObject.map((x) => {
+        set: predictedSkillsObject.map((x) => {
           return {
             id: x.id,
           };
@@ -43,7 +47,7 @@ const projectCreated = async (data: any) => {
       },
       category: {
         connect: {
-          id: predictedSkillsObject[0].category_id,
+          id: mostProbableSkill.category_id,
         },
       },
     },
@@ -84,7 +88,7 @@ const projectCreated = async (data: any) => {
     },
     data: {
       recommendation_tags: {
-        connect: predictedRecommendedTagsObject.map((x) => {
+        set: predictedRecommendedTagsObject.map((x) => {
           return {
             id: x.id,
           };

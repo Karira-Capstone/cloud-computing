@@ -20,10 +20,6 @@ export abstract class MLPredictProxyClass extends MLProxyClass {
   modeltype = "predict";
   private vocab: string[] = [];
   async setup(): Promise<void> {
-    this.vocab = await this.readVocabFromFile(this.modelname);
-  }
-
-  private async readVocabFromFile(fileName: string): Promise<string[]> {
     let vocab = [];
     const rl = readline.createInterface({
       input: fs.createReadStream(`${__dirname}/predict/files/${this.modelname}.txt`),
@@ -33,15 +29,16 @@ export abstract class MLPredictProxyClass extends MLProxyClass {
       vocab.push(line);
     });
     await events.once(rl, "close");
-    return vocab;
+    this.vocab = vocab;
   }
 
   protected async fetch(data: string): Promise<AxiosResponse<any, any>> {
     try {
+      console.log(data.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "").slice(0, 500));
       const result = await AxiosClient.post(`${this.modelname}:predict`, {
         instances: [
           {
-            [this.input_key]: [data],
+            [this.input_key]: [data.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "")],
           },
         ],
       });
@@ -53,23 +50,27 @@ export abstract class MLPredictProxyClass extends MLProxyClass {
 
   protected extract5Highest(data: any) {
     const predictions = data.predictions;
-    const numbers = predictions[0] as number[];
-    numbers.splice(0, 1);
-    const _5highest = [0, 0, 0, 0, 0];
+    let numbers = predictions[0] as number[];
+    let _5highest = [0, 0, 0, 0, 0];
     const _5highestVocab = ["", "", "", "", ""];
     console.log(this.modelname);
-    if (this.vocab.length != numbers.length) {
-      console.log("VOCAB LENGTH AND PREDICTIONS DIFFERENT: " + this.vocab.length + " vs " + numbers.length);
-    }
     for (let i = 0; i < 5; i++) {
-      const _highest = numbers.reduce((a, b) => Math.max(a, b), -Infinity);
+      const _highest = numbers.reduce((a, b) => (a > b ? a : b), -Infinity);
       const _removed_id = numbers.indexOf(_highest);
-      numbers.splice(_removed_id, 1);
+      numbers[_removed_id] = -1;
       _5highest[i] = _highest;
       _5highestVocab[i] = this.vocab[_removed_id];
       console.log(_highest, this.vocab[_removed_id]);
     }
-    return _5highestVocab;
+    _5highest = _5highest.filter((x) => x * 1000 > 1);
+    if (_5highest.length == 0) {
+      return ["Others"];
+    } else if (_5highest.length <= 2) {
+      const res = _5highestVocab.slice(0, _5highest.length);
+      res.push("Others");
+      return res;
+    }
+    return _5highestVocab.slice(0, _5highest.length);
   }
   async predict(text: string) {
     const prediction = await this.fetch(text);

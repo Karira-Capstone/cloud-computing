@@ -14,6 +14,11 @@ export const serviceCreatedHandler = async (req, res) => {
 const serviceCreated = async (data: any) => {
   const { id, title, description } = data;
   const predictedSkills = await MLProxyPredictServiceTags.predict(`${title} ${description}`);
+  const mostProbableSkill = await db.skill.findFirst({
+    where: {
+      title: predictedSkills[0],
+    },
+  });
   const predictedSkillsObject = await db.skill.findMany({
     where: {
       title: {
@@ -31,7 +36,7 @@ const serviceCreated = async (data: any) => {
     },
     data: {
       skills: {
-        connect: predictedSkillsObject.map((x) => {
+        set: predictedSkillsObject.map((x) => {
           return {
             id: x.id,
           };
@@ -39,7 +44,7 @@ const serviceCreated = async (data: any) => {
       },
       category: {
         connect: {
-          id: predictedSkillsObject[0].category_id,
+          id: mostProbableSkill.category_id
         },
       },
     },
@@ -62,7 +67,6 @@ const serviceCreated = async (data: any) => {
     arr.push(service);
   });
   const predictedRecommendedTags = await MLProxyPredictFindProject.predict(arr.join(" "));
-
   const predictedRecommendedTagsObject = await db.skill.findMany({
     where: {
       title: {
@@ -73,7 +77,7 @@ const serviceCreated = async (data: any) => {
       category: true,
     },
   });
-  console.log(predictedRecommendedTagsObject);
+  // console.log(predictedRecommendedTagsObject);
 
   await db.user.update({
     where: {
@@ -81,7 +85,7 @@ const serviceCreated = async (data: any) => {
     },
     data: {
       recommendation_tags: {
-        connect: predictedRecommendedTagsObject.map((x) => {
+        set: predictedRecommendedTagsObject.map((x) => {
           return {
             id: x.id,
           };
