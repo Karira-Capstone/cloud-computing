@@ -26,6 +26,7 @@ export const createBidForProjectHandler = async (
       data: {
         message: payload.message,
         price: payload.price,
+        attachment: payload.attachment,
         worker: {
           connect: {
             id: user.worker.id,

@@ -52,8 +52,8 @@ model Worker {
   birth_date      DateTime?
   province        String?
   city            String?
-  address         String?    @db.Text
-  description     String?    @db.Text
+  address         String?   @db.Text
+  description     String?   @db.Text
   avg_rating      Int       @default(0)
   num_of_reviews  Int       @default(0)
   num_of_order    Int       @default(0)
@@ -73,8 +73,8 @@ model Client {
   birth_date      DateTime?
   province        String?
   city            String?
-  address         String?    @db.Text
-  description     String?    @db.Text
+  address         String?   @db.Text
+  description     String?   @db.Text
   avg_rating      Int       @default(0)
   num_of_reviews  Int       @default(0)
   user_id         String    @unique
@@ -129,6 +129,7 @@ model Bid {
   price      Int
   message    String   @db.Text
   selected   Boolean  @default(false)
+  attachment String?  @db.Text
   created_at DateTime @default(now())
   worker_id  Int
   project_id Int
