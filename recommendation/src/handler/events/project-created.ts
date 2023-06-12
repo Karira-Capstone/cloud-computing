@@ -35,7 +35,7 @@ const projectCreated = async (data: any) => {
     },
     data: {
       skills: {
-        connect: predictedSkillsObject.map((x) => {
+        set: predictedSkillsObject.map((x) => {
           return {
             id: x.id,
           };
@@ -84,7 +84,7 @@ const projectCreated = async (data: any) => {
     },
     data: {
       recommendation_tags: {
-        connect: predictedRecommendedTagsObject.map((x) => {
+        set: predictedRecommendedTagsObject.map((x) => {
           return {
             id: x.id,
           };
