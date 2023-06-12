@@ -51,7 +51,7 @@ export abstract class MLPredictProxyClass extends MLProxyClass {
   protected extract5Highest(data: any) {
     const predictions = data.predictions;
     let numbers = predictions[0] as number[];
-    const _5highest = [0, 0, 0, 0, 0];
+    let _5highest = [0, 0, 0, 0, 0];
     const _5highestVocab = ["", "", "", "", ""];
     console.log(this.modelname);
     for (let i = 0; i < 5; i++) {
@@ -62,12 +62,15 @@ export abstract class MLPredictProxyClass extends MLProxyClass {
       _5highestVocab[i] = this.vocab[_removed_id];
       console.log(_highest, this.vocab[_removed_id]);
     }
-    const _mostProbable = _5highest[0];
-    if (_mostProbable * 1000 < 1) {
-      // jika lebih kecil dari 0.001, return ["Others"]
+    _5highest = _5highest.filter((x) => x * 1000 > 1);
+    if (_5highest.length == 0) {
       return ["Others"];
+    } else if (_5highest.length <= 2) {
+      const res = _5highestVocab.slice(0, _5highest.length);
+      res.push("Others");
+      return res;
     }
-    return _5highestVocab;
+    return _5highestVocab.slice(0, _5highest.length);
   }
   async predict(text: string) {
     const prediction = await this.fetch(text);

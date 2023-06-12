@@ -14,6 +14,11 @@ export const serviceCreatedHandler = async (req, res) => {
 const serviceCreated = async (data: any) => {
   const { id, title, description } = data;
   const predictedSkills = await MLProxyPredictServiceTags.predict(`${title} ${description}`);
+  const mostProbableSkill = await db.skill.findFirst({
+    where: {
+      title: predictedSkills[0],
+    },
+  });
   const predictedSkillsObject = await db.skill.findMany({
     where: {
       title: {
@@ -39,7 +44,7 @@ const serviceCreated = async (data: any) => {
       },
       category: {
         connect: {
-          id: predictedSkillsObject[0].category_id,
+          id: mostProbableSkill.category_id
         },
       },
     },
