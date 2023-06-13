@@ -42,7 +42,8 @@ const verify = (obj: any) => {
 };
 
 const onSuccess = async (data: any) => {
-  const order_id = data.order_id;
+  const order_ = data.order_id;
+  const order_id = order_.split('-')[1];
   const order = await db.order.update({
     where: {
       id: Number(order_id),
@@ -54,7 +55,8 @@ const onSuccess = async (data: any) => {
   // await notificationOnPaymentAccepted(order_id);
 };
 const onFailure = async (data: any) => {
-  const order_id = data.order_id;
+  const order_ = data.order_id;
+  const order_id = order_.split('-')[1];
   const order = await db.order.update({
     where: {
       id: Number(order_id),

@@ -29,7 +29,7 @@ export const createTransactionHandler = async (
 
     let parameter = {
       transaction_details: {
-        order_id: order.id,
+        order_id: `${new Date().getTime()}-${order.id}`,
         gross_amount: order.price,
       },
       customer_details: {
