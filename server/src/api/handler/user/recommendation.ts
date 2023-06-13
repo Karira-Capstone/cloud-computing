@@ -73,6 +73,7 @@ export const getYourRecommendation = async (
         worker: {
           include: {
             user: true,
+            skills: true
           },
         },
       },
