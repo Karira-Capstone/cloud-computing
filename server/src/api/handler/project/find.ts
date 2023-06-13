@@ -22,6 +22,7 @@ export const findProjectHandler = async (
             },
           },
         },
+        skills: true,
         category: true,
         client: {
           include: {

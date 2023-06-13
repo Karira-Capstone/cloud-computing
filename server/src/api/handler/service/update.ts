@@ -26,7 +26,7 @@ export const updateServiceHandler = async (
         description: payload.description || undefined,
         images: payload.images || undefined, // JSON
         price: payload.price || undefined,
-        category_id: payload.category.id || undefined,
+        category_id: payload?.category?.id || undefined,
       },
       where: {
         id: serviceId,
