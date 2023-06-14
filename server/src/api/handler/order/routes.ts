@@ -1,17 +1,14 @@
 import { ReqRefDefaults, ServerRoute } from '@hapi/hapi';
 import { authenticatedRouteConfig, clientRouteConfig, workerRouteConfig } from '../../config/route';
 import {
-  acceptOrderHandler,
   callbackOrder,
   cancelOrderHandler,
   createOrderFromBidHandler,
   createOrderFromServiceHandler,
   createReviewByClientHandler,
   createReviewByWorkerHandler,
-  createTransactionHandler,
   findOrderHandler,
   finishOrderHandler,
-  rejectOrderHandler,
 } from '.';
 
 export const orderRoute: ServerRoute<ReqRefDefaults>[] = [
@@ -19,12 +16,6 @@ export const orderRoute: ServerRoute<ReqRefDefaults>[] = [
     method: 'POST',
     path: '/api/orders',
     handler: callbackOrder,
-  },
-  {
-    method: 'POST',
-    path: '/api/orders/payments/{orderId}',
-    handler: createTransactionHandler,
-    options: clientRouteConfig,
   },
   {
     method: 'GET',
@@ -43,18 +34,6 @@ export const orderRoute: ServerRoute<ReqRefDefaults>[] = [
     path: '/api/orders/services/{serviceId}',
     handler: createOrderFromServiceHandler,
     options: clientRouteConfig,
-  },
-  {
-    method: 'PUT',
-    path: '/api/orders/{orderId}/accept',
-    handler: acceptOrderHandler,
-    options: workerRouteConfig,
-  },
-  {
-    method: 'PUT',
-    path: '/api/orders/{orderId}/reject',
-    handler: rejectOrderHandler,
-    options: workerRouteConfig,
   },
   {
     method: 'PUT',

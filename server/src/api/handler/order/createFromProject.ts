@@ -3,6 +3,7 @@ import Boom from '@hapi/boom';
 import { Client, User } from '@prisma/client';
 import { db } from '../../../prisma';
 import { notificationOnOrderFromBid } from '../../../lib/messaging/notification';
+import midtransSnap from '../../../lib/midtrans';
 
 export const createOrderFromBidHandler = async (
   request: Request<ReqRefDefaults>,
@@ -23,7 +24,7 @@ export const createOrderFromBidHandler = async (
         attachment: payload?.attachment || undefined,
         description: payload.description,
         price: bid.price,
-        status: 'CREATED',
+        status: 'ACCEPTED',
         type: 'BID',
         worker: {
           connect: {
@@ -46,9 +47,43 @@ export const createOrderFromBidHandler = async (
           },
         },
       },
+      include: {
+        client: {
+          include: {
+            user: true,
+          },
+        },
+        worker: {
+          include: {
+            user: true,
+          },
+        },
+      },
     });
-    // await notificationOnOrderFromBid(order.id);
-    return order;
+    await notificationOnOrderFromBid(order.id);
+    let parameter = {
+      transaction_details: {
+        order_id: `${new Date().getTime()}-${order.id}`,
+        gross_amount: order.price,
+      },
+      customer_details: {
+        first_name: order.client.user.full_name,
+        last_name: '',
+        email: order.client.user.email,
+        phone: order.client.phone,
+      },
+    };
+    const transaction = await midtransSnap.createTransaction(parameter);
+    const finalOrder = await db.order.update({
+      where: {
+        id: order.id,
+      },
+      data: {
+        midtrans_redirect_uri: transaction.redirect_url,
+        midtrans_token: transaction.token,
+      },
+    });
+    return finalOrder;
   } catch (error) {
     if (Boom.isBoom(error)) {
       throw error;

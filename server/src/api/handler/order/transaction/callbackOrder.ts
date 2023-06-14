@@ -2,6 +2,7 @@ import { ReqRefDefaults, Request, ResponseToolkit } from '@hapi/hapi';
 import Boom from '@hapi/boom';
 import { db } from '../../../../prisma';
 import crypto from 'crypto';
+import { notificationOnPaymentAccepted, notificationOnPaymentFailed } from '../../../../lib/messaging/notification';
 
 export const callbackOrder = async (
   request: Request<ReqRefDefaults>,
@@ -13,9 +14,9 @@ export const callbackOrder = async (
     if (!data) {
       return 'ok';
     }
-    // if (!verify(request.payload)) {
-    //   throw Boom.badRequest('');
-    // }
+    if (!verify(request.payload)) {
+      throw Boom.badRequest('unauthenticated request');
+    }
     const transaction_status = data.transaction_status;
     if (['capture', 'settlement'].includes(transaction_status)) {
       await onSuccess(data);
@@ -52,7 +53,7 @@ const onSuccess = async (data: any) => {
       status: 'PAID',
     },
   });
-  // await notificationOnPaymentAccepted(order_id);
+  await notificationOnPaymentAccepted(order_id);
 };
 const onFailure = async (data: any) => {
   const order_ = data.order_id;
@@ -65,5 +66,5 @@ const onFailure = async (data: any) => {
       status: 'CANCELLED',
     },
   });
-  // await notificationOnPaymentFailed(order_id);
+  await notificationOnPaymentFailed(order_id);
 };
