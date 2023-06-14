@@ -36,7 +36,13 @@ export const getYourOwnOrderHandler = async (
           service: true,
         },
       });
-      return orders;
+      return orders.map((order) => {
+        return {
+          ...order,
+          title: order.type == 'BID' ? order.project.title : order.service.title,
+          name: order.worker.user.full_name,
+        };
+      });
     }
     const orders = await db.order.findMany({
       where: {
@@ -62,7 +68,13 @@ export const getYourOwnOrderHandler = async (
         service: true,
       },
     });
-    return orders;
+    return orders.map((order) => {
+      return {
+        ...order,
+        title: order.type == 'BID' ? order.project.title : order.service.title,
+        name: order.client.user.full_name,
+      };
+    });
   } catch (error) {
     if (Boom.isBoom(error)) {
       throw error;
