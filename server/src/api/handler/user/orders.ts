@@ -21,6 +21,20 @@ export const getYourOwnOrderHandler = async (
             in: statusArray,
           },
         },
+        include: {
+          client: {
+            include: {
+              user: true,
+            },
+          },
+          worker: {
+            include: {
+              user: true,
+            },
+          },
+          project: true,
+          service: true,
+        },
       });
       return orders;
     }
