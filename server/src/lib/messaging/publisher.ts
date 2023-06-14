@@ -17,11 +17,13 @@ export const notificationPublisher = async (user: User, title: string, body: str
       },
     },
   });
-  await firebaseCloudMessage.send({
-    token: user.device_token,
-    notification: {
-      title: title,
-      body: body,
-    },
-  });
+  if (!!user.device_token) {
+    await firebaseCloudMessage.send({
+      token: user.device_token,
+      notification: {
+        title: title,
+        body: body,
+      },
+    });
+  }
 };

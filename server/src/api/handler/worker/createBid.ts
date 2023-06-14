@@ -39,7 +39,7 @@ export const createBidForProjectHandler = async (
         },
       },
     });
-    // await notificationOnBid(createdBid.project_id);
+    await notificationOnBid(createdBid.project_id);
     return createdBid;
   } catch (error) {
     if (Boom.isBoom(error)) {

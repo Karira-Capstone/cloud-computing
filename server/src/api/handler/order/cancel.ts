@@ -18,9 +18,7 @@ export const cancelOrderHandler = async (
         where: {
           client_id: user.client.id,
           id: orderId,
-          status: {
-            in: ['CREATED', 'ACCEPTED'],
-          },
+          status: 'ACCEPTED',
         },
       })
       .catch(() => {
