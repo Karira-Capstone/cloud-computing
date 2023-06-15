@@ -13,8 +13,23 @@ export const findProjectHandler = async (
         id: projectId,
       },
       include: {
+        order: {
+          include: {
+            client: {
+              include: {
+                user: true,
+              },
+            },
+            worker: {
+              include: {
+                user: true,
+              },
+            },
+          },
+        },
         bids: {
           include: {
+            order: true,
             worker: {
               include: {
                 user: true,
