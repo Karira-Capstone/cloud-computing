@@ -1,6 +1,7 @@
 import { NOTIFICATION_TYPE, User } from '@prisma/client';
 import { firebaseAdmin } from '../firebase';
 import { db } from '../../prisma';
+import { error } from 'console';
 
 const firebaseCloudMessage = firebaseAdmin.messaging();
 
@@ -17,13 +18,18 @@ export const notificationPublisher = async (user: User, title: string, body: str
       },
     },
   });
-  if (!!user.device_token) {
-    await firebaseCloudMessage.send({
-      token: user.device_token,
-      notification: {
-        title: title,
-        body: body,
-      },
-    });
+  if (!!user.device_token && user.device_token != "") {
+    await firebaseCloudMessage
+      .send({
+        token: user.device_token,
+        notification: {
+          title: title,
+          body: body,
+        },
+      })
+      .catch((error) => {
+        console.error("FAILED TO SEND PUSH NOTIFICATION:")
+        console.error(error);
+      });
   }
 };
