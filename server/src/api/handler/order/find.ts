@@ -32,6 +32,7 @@ export const findOrderHandler = async (
           worker: {
             include: {
               user: true,
+              skills: true
             },
           },
           client: {
