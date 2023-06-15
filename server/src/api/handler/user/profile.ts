@@ -17,15 +17,48 @@ export const getYourOwnProfileHandler = async (
         client: {
           include: {
             orders: true,
-            projects: true,
+            projects: {
+              include: {
+                order: {
+                  include: {
+                    worker: {
+                      include: {
+                        user: true,
+                      },
+                    },
+                    client: {
+                      include: {
+                        user: true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
             reviews: true,
           },
         },
         worker: {
           include: {
-            orders: true,
             reviews: true,
-            services: true,
+            services: {
+              include: {
+                orders: {
+                  include: {
+                    worker: {
+                      include: {
+                        user: true,
+                      },
+                    },
+                    client: {
+                      include: {
+                        user: true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
             skills: true,
           },
         },
