@@ -21,6 +21,20 @@ export const findServiceHandler = async (
             user: true,
           },
         },
+        orders: {
+          include: {
+            client: {
+              include: {
+                user: true,
+              },
+            },
+            worker: {
+              include: {
+                user: true,
+              },
+            },
+          },
+        },
       },
     });
     return service;
