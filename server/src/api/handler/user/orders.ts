@@ -35,6 +35,9 @@ export const getYourOwnOrderHandler = async (
           project: true,
           service: true,
         },
+        orderBy: {
+          created_at: 'desc',
+        },
       });
       return orders.map((order) => {
         return {
@@ -66,6 +69,9 @@ export const getYourOwnOrderHandler = async (
         },
         project: true,
         service: true,
+      },
+      orderBy: {
+        created_at: 'desc',
       },
     });
     return orders.map((order) => {
