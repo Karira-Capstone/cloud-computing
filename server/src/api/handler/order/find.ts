@@ -28,9 +28,23 @@ export const findOrderHandler = async (
             },
           ],
         },
+        include: {
+          worker: {
+            include: {
+              user: true,
+            },
+          },
+          client: {
+            include: {
+              user: true,
+            },
+          },
+          project: true,
+          service: true,
+        },
       })
       .catch(() => {
-        throw Boom.unauthorized()
+        throw Boom.unauthorized();
       });
     return order;
   } catch (error) {
