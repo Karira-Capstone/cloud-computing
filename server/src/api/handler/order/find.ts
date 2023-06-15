@@ -41,6 +41,7 @@ export const findOrderHandler = async (
           },
           project: true,
           service: true,
+          bid: true,
         },
       })
       .catch(() => {

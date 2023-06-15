@@ -34,6 +34,7 @@ export const getYourOwnOrderHandler = async (
           },
           project: true,
           service: true,
+          bid: true,
         },
         orderBy: {
           created_at: 'desc',
@@ -69,6 +70,7 @@ export const getYourOwnOrderHandler = async (
         },
         project: true,
         service: true,
+        bid: true,
       },
       orderBy: {
         created_at: 'desc',
