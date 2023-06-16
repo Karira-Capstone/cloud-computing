@@ -18,7 +18,7 @@ export const notificationPublisher = async (user: User, title: string, body: str
       },
     },
   });
-  if (!!user.device_token && user.device_token != "") {
+  if (!!user.device_token && user.device_token != '') {
     await firebaseCloudMessage
       .send({
         token: user.device_token,
@@ -27,8 +27,12 @@ export const notificationPublisher = async (user: User, title: string, body: str
           body: body,
         },
       })
+      .then((response) => {
+        console.log(`Successfully sent notification to ${user.full_name}`);
+        console.log(response);
+      })
       .catch((error) => {
-        console.error("FAILED TO SEND PUSH NOTIFICATION:")
+        console.error('FAILED TO SEND PUSH NOTIFICATION:');
         console.error(error);
       });
   }
