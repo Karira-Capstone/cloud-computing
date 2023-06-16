@@ -3,6 +3,8 @@ import { db } from '..';
 import fs from 'fs';
 import events from 'events';
 import readline from 'readline';
+import { dummyCategories } from './data/categories';
+import { dummySkills } from './data/skills';
 
 const createSkillNCategory = async (fileName: string, id: number): Promise<void> => {
   try {
@@ -37,10 +39,27 @@ const createSkillNCategory = async (fileName: string, id: number): Promise<void>
 };
 
 export const seedSkillNCategory = async () => {
+  console.log("Creating categories...")
   await Promise.all(
-    fs
-      .readdirSync(`${__dirname}/skills`)
-      .sort()
-      .map((fileName, idx) => createSkillNCategory(fileName, idx + 1)),
+    dummyCategories.map((category) =>
+      db.category.create({
+        data: {
+          id: category.id,
+          title: category.title,
+        },
+      }),
+    ),
+  );
+  console.log("Creating Skills...")
+  await Promise.all(
+    dummySkills.map((skill) =>
+      db.skill.create({
+        data: {
+          id: skill.id,
+          title: skill.title,
+          category_id: skill.category_id,
+        },
+      }),
+    ),
   );
 };
