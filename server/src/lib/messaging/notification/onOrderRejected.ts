@@ -16,7 +16,7 @@ export const notificationOnOrderRejected = async (order_id: number) => {
   });
   await notificationPublisher(
     order.client.user,
-    'Pesanan Ditolak!',
-    'Yaah, Pesanan Kamu Ditolak. Tapi Jangan Khawatir, yuk cek rekomendasi kami',
+    'Pesanan Ditolak',
+    'Maaf, pesananmu telah ditolak. Namun, jangan khawatir, silakan cek rekomendasi kami.',
   );
 };

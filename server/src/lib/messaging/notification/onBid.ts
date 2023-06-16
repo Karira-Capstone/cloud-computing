@@ -19,15 +19,15 @@ export const notificationOnBid = async (project_id: number) => {
   if (project.bids.length == 1) {
     await notificationPublisher(
       project.client.user,
-      'Ada Tawaran Freelancer!',
-      `Sudah ada yang menawar proyek ${project.title} milikmu, yuk cek dahulu`,
+      'Tawaran Freelancer Masuk',
+      `Proyek ${project.title} milikmu telah menerima satu tawaran. Silakan cek sekarang.`,
     );
   }
   if (project.bids.length == 5) {
     await notificationPublisher(
       project.client.user,
-      'Proyek Kamu Ramai Tawaran',
-      `Banyak yang menawar ${project.title} milikmu, yuk cek dahulu`,
+      'Banyak Tawaran untuk Proyek Kamu',
+      `Proyek ${project.title} milikmu telah menerima banyak tawaran. Silakan cek sekarang.`,
     );
   }
 };

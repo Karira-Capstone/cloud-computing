@@ -16,7 +16,7 @@ export const notificationOnOrderCancelled = async (order_id: number) => {
   });
   await notificationPublisher(
     order.client.user,
-    'Pesanan Dibatalkan!',
-    'Jangan sedih! yuk cari proyek lain dari rekomendasi kami',
+    'Pesanan Dibatalkan',
+    'Maaf, pesananmu telah dibatalkan. Silakan cari proyek lain dari rekomendasi kami.',
   );
 };
