@@ -11,7 +11,7 @@ import { seedNotifications } from './script/notifications';
 const resetNSeed = async () => {
   console.log('Purging all data...');
   // console.log('Seeding new users...');
-  // await seedSkillNCategory();
+  await seedSkillNCategory();
   // await seedUser();
   // console.log('Seeding new projects and services...');
   // await seedProject();
