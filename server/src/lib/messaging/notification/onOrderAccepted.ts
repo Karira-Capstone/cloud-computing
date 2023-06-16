@@ -16,7 +16,7 @@ export const notificationOnOrderAccepted = async (order_id: number) => {
   });
   await notificationPublisher(
     order.client.user,
-    'Pesanan Kamu Diterima!',
-    'Segera Bayar Pesananmu Sekarang',
+    'Pesanan Kamu Diterima',
+    'Mohon segera melakukan pembayaran untuk pesananmu.',
   );
 };
